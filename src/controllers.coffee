@@ -22,11 +22,8 @@ angular.module('iwishua.controllers', [])
 .controller('AboutController',    ['$scope', 'logger',
                                    require('./controllers/AboutController')])
 
-.controller('PrivacyController',  ['$scope', 'logger',
-                                   require('./controllers/PrivacyController')])
-
-.controller('ListController',     ['$scope', 'logger',
-                                   require('./controllers/ListController')])
+.controller('HiddenController',    ['$scope', 'logger',
+                                   require('./controllers/HiddenController')])
 
 .controller('WishController',     ['$scope', 'logger', 'entityManager', '$routeParams', '$location',
                                    require('./controllers/WishController')])
