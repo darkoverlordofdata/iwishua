@@ -1,0 +1,43 @@
+{
+    "name": "iwishua",
+    "version": "0.1.0",
+    "description": "iwishua",
+    "repository": "https://github.appfog.com/darkoverlordofdata/iwishua",
+    "license": "MIT",
+    "author": {
+        "name": "Bruce Davidson",
+        "email": "brucedavidson@darkoverlordofdata.com",
+        "url": "http://www.darkoverlordofdata.com/"
+    },
+    "homepage": "https://iwishua.aws.af.cm/",
+    "devDependencies": {
+        "coffee-script": "~1.7.1",
+        "karma": "~0.10",
+        "protractor": "~0.20.1",
+        "bower": "^1.3.1",
+        "shelljs": "^0.2.6",
+        "karma-junit-reporter": "^0.2.2"
+    },
+    "dependencies": {
+        "coffee-script": "~1.7.1",
+        "express": "~3.4.8"
+    },
+    "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+    "start": "node index.js",
+
+    "pretest": "npm install",
+    "test": "karma start test/karma.conf.js",
+    "test-single-run": "karma start test/karma.conf.js  --single-run",
+
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor test/protractor-conf.js",
+
+    "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + cat('test/bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'test/index-async.html');\""
+    }
+}

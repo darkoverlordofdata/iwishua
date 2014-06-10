@@ -1,0 +1,28 @@
+{
+    "name": "iwishua",
+    "version": "0.1.0",
+    "description": "iwishua",
+    "repository": "https://github.appfog.com/darkoverlordofdata/iwishua",
+    "license": "MIT",
+    "author": {
+        "name": "Bruce Davidson",
+        "email": "brucedavidson@darkoverlordofdata.com",
+        "url": "http://www.darkoverlordofdata.com/"
+    },
+    "homepage": "https://iwishua.aws.af.cm/",
+    "devDependencies": {
+        "coffee-script": "~1.7.1",
+        "karma": "~0.10",
+        "protractor": "~0.20.1",
+        "bower": "^1.3.1",
+        "shelljs": "^0.2.6",
+        "karma-junit-reporter": "^0.2.2"
+    },
+    "dependencies": {
+        "coffee-script": "~1.7.1",
+        "express": "~3.4.8"
+    },
+    "scripts": {
+    "start": "node index.js"
+    }
+}

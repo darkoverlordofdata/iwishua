@@ -1,0 +1,11 @@
+<div id="wish-content">
+    <a class="btn" href="#next/{{skip}}">>></a>
+    <div class="js-masonry products">
+        <div ng-repeat="product in products">
+            <div class="item {{ product.className }} well">
+                <img class="{{ product.aligned }} product_pic img-rounded" ng-src="{{ product.productImageUrl }}" alt="{{ product.productTitle }}" />
+                <p>{{ product.productName }}</p>
+            </div>
+        </div>
+    </div>
+</div>

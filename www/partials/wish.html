@@ -1,0 +1,16 @@
+<div id="wish-content">
+    <div class="wish-splash jumbotron masthead">
+        <div id="wish-spinner"></div>
+    </div>
+    <div class="js-masonry products"
+         ng-swipe-left="navLeft($event)"
+         ng-swipe-right="navRight($event)"
+         >
+        <div ng-repeat="product in products">
+            <div class="item {{ product.className }} well">
+                <img class="{{ product.aligned }} product_pic img-rounded" ng-src="{{ product.productImageUrl }}" alt="{{ product.productTitle }}" />
+                <p>{{ product.productName }}</p>
+            </div>
+        </div>
+    </div>
+</div>
