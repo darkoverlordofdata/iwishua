@@ -1,0 +1,190 @@
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\iwishua.dll.config
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\iwishua.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\iwishua.pdb
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Antlr3.Runtime.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.AspNet.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.Core.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.OAuth.Consumer.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.OAuth.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.OpenId.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\EntityFramework.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Microsoft.Data.Edm.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Microsoft.Data.OData.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Microsoft.Web.Infrastructure.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Microsoft.Web.WebPages.OAuth.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Newtonsoft.Json.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Net.Http.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Net.Http.Formatting.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Net.Http.WebRequest.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Spatial.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Helpers.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Http.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Http.OData.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Http.WebHost.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Mvc.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Optimization.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Razor.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.WebPages.Deployment.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.WebPages.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.WebPages.Razor.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\WebGrease.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\WebMatrix.Data.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\WebMatrix.WebData.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\EntityFramework.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Newtonsoft.Json.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Net.Http.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Net.Http.Formatting.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Net.Http.WebRequest.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Helpers.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Http.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Http.WebHost.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Mvc.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Razor.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.WebPages.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.WebPages.Deployment.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.WebPages.Razor.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\WebMatrix.Data.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Microsoft.Web.WebPages.OAuth.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\WebMatrix.WebData.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.AspNet.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.Core.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.OAuth.Consumer.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.OAuth.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.OpenId.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Web.Http.OData.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Microsoft.Data.Edm.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\Microsoft.Data.OData.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\System.Spatial.xml
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\de\Microsoft.Data.Edm.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\es\Microsoft.Data.Edm.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\fr\Microsoft.Data.Edm.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\it\Microsoft.Data.Edm.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\ja\Microsoft.Data.Edm.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\ko\Microsoft.Data.Edm.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\ru\Microsoft.Data.Edm.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\de\Microsoft.Data.OData.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\es\Microsoft.Data.OData.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\fr\Microsoft.Data.OData.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\it\Microsoft.Data.OData.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\ja\Microsoft.Data.OData.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\ko\Microsoft.Data.OData.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\ru\Microsoft.Data.OData.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\de\System.Spatial.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\es\System.Spatial.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\fr\System.Spatial.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\it\System.Spatial.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\ja\System.Spatial.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\ko\System.Spatial.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\ru\System.Spatial.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\zh-Hans\System.Spatial.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\bin\zh-Hant\System.Spatial.resources.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\obj\Debug\iwishua.csprojResolveAssemblyReference.cache
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\obj\Debug\iwishua.dll
+c:\users\bruce\documents\visual studio 2013\Projects\iwishua\iwishua\obj\Debug\iwishua.pdb
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\obj\Debug\iwishua.csprojResolveAssemblyReference.cache
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\obj\Debug\iwishua.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\obj\Debug\iwishua.pdb
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\iwishua.dll.config
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\iwishua.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\iwishua.pdb
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Antlr3.Runtime.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.AspNet.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.Core.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.OAuth.Consumer.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.OAuth.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.OpenId.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\EntityFramework.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\IronRuby.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\IronRuby.Libraries.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\IronRuby.Libraries.Yaml.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Data.Edm.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Data.OData.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Dynamic.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Scripting.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Scripting.Metadata.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Web.Infrastructure.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Web.WebPages.OAuth.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Newtonsoft.Json.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\SassAndCoffee.AspNet.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\SassAndCoffee.Core.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\SassAndCoffee.JavaScript.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\SassAndCoffee.Ruby.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Net.Http.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Net.Http.Formatting.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Net.Http.WebRequest.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Spatial.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Helpers.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Http.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Http.OData.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Http.WebHost.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Mvc.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Optimization.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Razor.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.WebPages.Deployment.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.WebPages.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.WebPages.Razor.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\WebGrease.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\WebMatrix.Data.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\WebMatrix.WebData.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\EntityFramework.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Newtonsoft.Json.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Net.Http.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Net.Http.Formatting.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Net.Http.WebRequest.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Helpers.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Http.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Http.WebHost.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Mvc.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Razor.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.WebPages.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.WebPages.Deployment.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.WebPages.Razor.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\WebMatrix.Data.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Web.WebPages.OAuth.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\WebMatrix.WebData.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.AspNet.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.Core.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.OAuth.Consumer.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.OAuth.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.OpenId.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Web.Http.OData.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Data.Edm.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\Microsoft.Data.OData.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\System.Spatial.xml
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\de\Microsoft.Data.Edm.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\es\Microsoft.Data.Edm.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\fr\Microsoft.Data.Edm.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\it\Microsoft.Data.Edm.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\ja\Microsoft.Data.Edm.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\ko\Microsoft.Data.Edm.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\ru\Microsoft.Data.Edm.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\de\Microsoft.Data.OData.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\es\Microsoft.Data.OData.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\fr\Microsoft.Data.OData.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\it\Microsoft.Data.OData.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\ja\Microsoft.Data.OData.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\ko\Microsoft.Data.OData.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\ru\Microsoft.Data.OData.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\de\System.Spatial.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\es\System.Spatial.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\fr\System.Spatial.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\it\System.Spatial.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\ja\System.Spatial.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\ko\System.Spatial.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\ru\System.Spatial.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\zh-Hans\System.Spatial.resources.dll
+F:\JOHNDATA\Code\iwishua\WithBruce\iwishua\iwishua\bin\zh-Hant\System.Spatial.resources.dll

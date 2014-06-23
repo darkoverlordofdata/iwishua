@@ -11,7 +11,7 @@
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
     "breezejs": "*",
-    "ng-facebook": "~0.1.0"
+    "ng-facebook": "~0.1.0",
   },
   "authors": [
     "darkoverlordofdata <darkoverlordofdata@gmail.com>"

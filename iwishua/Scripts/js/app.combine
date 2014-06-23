@@ -1,0 +1,16 @@
+# 
+#   Scripts to load:
+#
+~/Scripts/src/modular.js
+~/Scripts/src/controllers/AboutController.js
+~/Scripts/src/controllers/FBController.js
+~/Scripts/src/controllers/HiddenController.js
+~/Scripts/src/controllers/WishController.js
+~/Scripts/src/services/Logger.js
+~/Scripts/src/services/Products.js
+~/Scripts/src/controllers.js
+~/Scripts/src/directives.js
+~/Scripts/src/filters.js
+~/Scripts/src/services.js
+~/Scripts/src/app.js
+
