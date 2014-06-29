@@ -32,13 +32,13 @@ app.use express.methodOverride()
 app.use express.cookieParser()
 app.use express.cookieSession(secret: key)
 app.use app.router
-app.use express.static(path.join(__dirname, "www"))
+app.use express.static(path.join(__dirname, "iwishua"))
 app.use express.errorHandler()  if "development" is app.get("env")
 
 #cache = String(fs.readFileSync("./www/index.html"))
 
 app.all "/", (req, res) ->
-  res.send String(fs.readFileSync("./www/index.html"))
+  res.send String(fs.readFileSync("./iwishua/index.html"))
 
 
 app.use ->
