@@ -23,11 +23,6 @@ task 'build:src', 'Build the coffee app', ->
   start = new Date().getTime()
 
   if not fs.existsSync('tmp/') then fs.mkdirSync('tmp')
-  if not fs.existsSync('iwishua/') then fs.mkdirSync('iwishua')
-  if not fs.existsSync('iwishua/Scripts/') then fs.mkdirSync('iwishua/Scripts')
-  if not fs.existsSync('iwishua/Scripts/js/') then fs.mkdirSync('iwishua/Scripts/js')
-  if not fs.existsSync('iwishua/Scripts/js/app/') then fs.mkdirSync('iwishua/Scripts/js/app')
-
 
   script = ["'use strict'"]
   for file in readVSFiles('iwishua/Scripts/js/app.combine')
