@@ -1,16 +1,21 @@
 # 
 #   Scripts to load:
 #
-~/Scripts/src/modular.js
-~/Scripts/src/controllers/AboutController.js
-~/Scripts/src/controllers/FBController.js
-~/Scripts/src/controllers/HiddenController.js
-~/Scripts/src/controllers/WishController.js
-~/Scripts/src/services/Logger.js
-~/Scripts/src/services/Products.js
-~/Scripts/src/controllers.js
-~/Scripts/src/directives.js
-~/Scripts/src/filters.js
-~/Scripts/src/services.js
 ~/Scripts/src/app.js
+~/Scripts/src/config.js
+~/Scripts/src/lib/logger.js
+~/Scripts/src/lib/shuffle.js
+~/Scripts/src/lib/capitalise.js
+~/Scripts/src/lib/fix-collapse.js
+~/Scripts/src/lib/spinner.js
+~/Scripts/src/controllers/navbar-controller.js
+~/Scripts/src/controllers/fb-controller.js
+~/Scripts/src/controllers/detail-controller.js
+~/Scripts/src/controllers/wish-controller.js
+~/Scripts/src/models/models.js
+~/Scripts/src/models/entity-manager-factory.js
+~/Scripts/src/models/unit-of-work.js
+~/Scripts/src/models/products/model.js
+~/Scripts/src/models/products/datacontext.js
+
 

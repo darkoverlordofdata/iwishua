@@ -12,6 +12,7 @@
     "html5-boilerplate": "~4.3.0",
     "breezejs": "*",
     "ng-facebook": "~0.1.0",
+    "angular-masonry": "~0.8.1"
   },
   "authors": [
     "darkoverlordofdata <darkoverlordofdata@gmail.com>"

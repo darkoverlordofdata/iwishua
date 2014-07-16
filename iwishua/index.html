@@ -37,36 +37,8 @@
 <body ng-app="iwishua">
 <!-- Facebook App -->
 <div id="fb-root"></div>
-<!-- Menu -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand">iwishua.com</a>
-            <p ng-controller="FBController" id="fb-name" class="navbar-text">{{username}}</p>
-
-        </div>
-        <div class="collapse navbar-collapse" fix-collapse="true">
-            <ul class="nav navbar-nav navbar-right">
-                <!--<li><div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div></li>-->
-                <li><a href="#hidden">See Hidden Gifts</a></li>
-                <li><a href="#list">See Wish List</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#privacy">Privacy</a></li>
-                <li class="divider"></li>
-                <li><a href="#login">Login</a></li>
-                <li><a href="#logout">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
+<!-- NavBar -->
+<div ng-include="'Content/partials/navbar.html'"></div>
 <!-- Client window -->
 <div ng-view class="container"></div>
 
@@ -77,30 +49,27 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.0/spin.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.2/masonry.pkgd.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/q.js/1.0.1/q.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/breezejs/1.4.11/breeze.min.js"></script>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-touch.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-route.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular-cookies.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
 
 <!-- Local Scripts  -->
-<script src="Scripts/js/breezejs/labs/breeze.angular.js"></script>
-<script src="Scripts/js/breezejs/labs/breeze.metadata-helper.js"></script>
+<script src="Scripts/js/angular-masonry/angular-masonry.js"></script>
 <script src="Scripts/js/ng-facebook/ngFacebook.js"></script>
 
-<!-- Application Scripts  -->
-<!--<script src="Scripts/js/modular.js"></script>-->
-<!--<script src="Scripts/js/app/controllers/AboutController.js"></script>-->
-<!--<script src="Scripts/js/app/controllers/FBController.js"></script>-->
-<!--<script src="Scripts/js/app/controllers/HiddenController.js"></script>-->
-<!--<script src="Scripts/js/app/controllers/WishController.js"></script>-->
-<!--<script src="Scripts/js/app/services/Logger.js"></script>-->
-<!--<script src="Scripts/js/app/services/Products.js"></script>-->
-<!--<script src="Scripts/js/app/controllers.js"></script>-->
-<!--<script src="Scripts/js/app/directives.js"></script>-->
-<!--<script src="Scripts/js/app/filters.js"></script>-->
-<!--<script src="Scripts/js/app/services.js"></script>-->
-<!--<script src="Scripts/js/app/app.js"></script>-->
+<!-- Breezejs scripts -->
+<script src="Scripts/js/breezejs/breeze.debug.js"></script>
+<script src="Scripts/js/breezejs/labs/breeze.angular.js"></script>
+<script src="Scripts/js/breezejs/labs/breeze.labs.dataservice.abstractrest.js"></script>
+<script src="Scripts/js/breezejs/labs/breeze.labs.dataservice.azuremobileservices.js"></script>
+<script src="Scripts/js/breezejs/labs/breeze.metadata-helper.js"></script>
+<script src="Scripts/js/breezejs/labs/breeze.saveErrorExtensions.js"></script>
+
+
+<!-- Application  -->
 <script src="Scripts/js/app.js"></script>
 
   <!--

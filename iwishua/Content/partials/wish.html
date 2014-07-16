@@ -1,16 +1,25 @@
-<div id="wish-content">
-    <div class="wish-splash jumbotron masthead">
+<!--
+Wish View
+-->
+<div id="wish-content" ng-controller="WishController as wish">
+    <div ng-show="wish.isBusy" class="wish-splash jumbotron masthead spinner">
         <div id="wish-spinner"></div>
     </div>
-    <div class="js-masonry products"
-         ng-swipe-left="navLeft($event)"
-         ng-swipe-right="navRight($event)"
+    <div ng-hide="wish.isBusy" class="products"
+         ng-swipe-left="wish.navLeft($event)"
+         ng-swipe-right="wish.navRight($event)"
          >
-        <div ng-repeat="product in products">
-            <div class="item {{ product.className }} well">
-                <img class="{{ product.aligned }} product_pic img-rounded" ng-src="{{ product.productImageUrl }}" alt="{{ product.productTitle }}" />
+        <div masonry>
+            <div class="masonry-brick {{ product.className }}"
+                 ng-click="wish.details('{{ product.id }}')"
+                 ng-repeat="product in wish.products"
+                 >
+                <img class="{{ product.aligned }} product_pic img-rounded"
+                     ng-src="{{ product.productImageUrl }}" alt="{{ product.productTitle }}" />
                 <p>{{ product.productName }}</p>
             </div>
         </div>
     </div>
 </div>
+
+
