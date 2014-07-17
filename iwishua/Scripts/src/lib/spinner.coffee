@@ -35,4 +35,4 @@ angular.module('iwishua')
       #
       # Stops the spinner
       #
-      spinner.start()
+      spinner.spin $element[0]

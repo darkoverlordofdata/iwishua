@@ -65,7 +65,9 @@ angular.module('iwishua.models')
 
       deleteProduct: (product) =>
         aspect = product.entityAspect
+        console.log aspect
         if aspect.entityState isnt breeze.EntityState.Detached
+          console.log 'DEL'
           aspect.setDeleted()
         return
 
@@ -84,7 +86,7 @@ angular.module('iwishua.models')
         .then (data) =>
           # Interested in what server has then we are done.
           fetched = data.results
-          $log.log "breeze query succeeded. fetched: #{fetched.length}"
+          logger.log "breeze query succeeded. skiped/fetched: #{skip}/#{fetched.length}"
 
           # Blended results.
           # This gets me all local changes and what the server game me.

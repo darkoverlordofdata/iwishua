@@ -75,7 +75,7 @@ angular.module('iwishua.models')
         if !@_db
           @_disabled = true
           @_storeCount = 0
-          $log.error "Browser does not support local storage Unit Of Work disabled."
+          $log.error "Browser does not support local storage. Unit Of Work disabled."
         else
           @_manager = entityManager
           @listenForChanges()

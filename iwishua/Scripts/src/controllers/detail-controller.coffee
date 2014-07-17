@@ -17,8 +17,8 @@
 #
 angular.module('iwishua')
 .controller 'DetailController',
-  ['logger', '$scope', '$modalInstance', 'productData',
-  (logger, $scope, $modalInstance, productData) ->
+  ['logger', '$scope', '$modalInstance', 'productData', 'datacontext',
+  (logger, $scope, $modalInstance, productData, datacontext) ->
 
     #
     #   modal popup controller
@@ -41,6 +41,11 @@ angular.module('iwishua')
 
       delete: () =>
         productData.isPublished = false
+#
+#        datacontext.deleteProduct productData
+#        state = productData.entityAspect.entityState
+#        console.log 'Detached : '+state.isDetached()
+#        console.log 'Deleted  : '+state.isDeleted()
         $modalInstance.close()
 
       wish: () ->

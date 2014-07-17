@@ -104,11 +104,19 @@ angular.module('iwishua')
       #
       display: (data) =>
 
+
+        console.log '[data.length = '+data.length + ']'
+        console.log '[skip = '+skip + ']'
         #
         # Parse the data for display
         #
         @isBusy = false
-        @products = shuffle(data.slice(skip, skip+perPage))
+
+        if skip+perPage > data.length
+          @products = shuffle(data.slice(-perPage))
+        else
+          @products = shuffle(data.slice(skip, skip+perPage))
+
         for attrs in @products
 
           title = attrs.productTitle
