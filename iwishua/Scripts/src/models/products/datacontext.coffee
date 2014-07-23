@@ -15,8 +15,8 @@
 #
 angular.module('iwishua.models')
 .factory 'datacontext',
-  ['$log','$q', 'breeze', 'entityManagerFactory', 'unit-of-work', 'logger', 'config',
-  ($log, $q, breeze, entityManagerFactory, unitOfWork, logger, config) ->
+  ['$q', '$http', 'breeze', 'entityManagerFactory', 'entity-cache', 'logger', 'config',
+  ($q, $http, breeze, entityManagerFactory, entityCache, logger, config) ->
 
     new class ProductsDataContext
 
@@ -52,11 +52,18 @@ angular.module('iwishua.models')
 
       ready: () =>
         entityManagerFactory.getEntityManager()
-        .then (em) =>
-          @_manager = em
+        .then (entityManager) =>
+          @_manager = entityManager
           @_manager.entityChanged.subscribe @entityCountsChanged
           @_productsType = @_manager.metadataStore.getEntityType('iwishuaproducts')
           @updateCounts()
+          #
+          # breezejs inlineCount is an undefined value
+          # as a workaround, use OData api
+          #
+          $http(method: 'GET', url: "#{config.serviceName}/iwishuaproducts?$top=0&$inlinecount=allpages&")
+          .success (data) =>
+            @maxCount = data.count
           return
 
 
@@ -65,21 +72,30 @@ angular.module('iwishua.models')
 
       deleteProduct: (product) =>
         aspect = product.entityAspect
-        console.log aspect
         if aspect.entityState isnt breeze.EntityState.Detached
-          console.log 'DEL'
           aspect.setDeleted()
+        return
+
+      unDeleteProduct: (product) =>
+        aspect = product.entityAspect
+        if aspect.entityState isnt breeze.EntityState.Detached
+          aspect.rejectChanges()
         return
 
       # Get next Products from the server and cache combined
       getNextProducts: (skip) =>
-        # Create the query
+
+      # Create the query
         query = breeze.EntityQuery
         .from('iwishuaproducts')
         .skip(parseInt(skip, 10))
         .take(parseInt(config.pageSize, 10))
         .where('isPublished', 'eq', true)
-#        .inlineCount(true)
+        #.inlineCount() - sets an undefined value
+
+        # if the query is satisfied from cache, then query from cache
+        if @_manager.executeQueryLocally(query).length is config.pageSize
+          query = query.using(breeze.FetchStrategy.FromLocalCache)
 
         # Execute the query
         @_manager.executeQuery(query)
@@ -89,7 +105,7 @@ angular.module('iwishua.models')
           logger.log "breeze query succeeded. skiped/fetched: #{skip}/#{fetched.length}"
 
           # Blended results.
-          # This gets me all local changes and what the server game me.
+          # This returns all local changes merged with server results
           return @_manager.getEntities(@_productsType)
 
         # Normally would re-query the cache to combine cached and fetched
@@ -108,23 +124,23 @@ angular.module('iwishua.models')
         @_manager.hasChanges()
 
       loadProducts: (skip = 0) =>
-        unitOfWork.restore()
+        entityCache.restore()
         @getNextProducts(skip)
 
       # Clear everything local and reload from server.
       reset: () =>
-        unitOfWork.stop()
-        unitOfWork.clear()
+        entityCache.stop()
+        entityCache.clear()
         @_manager.clear()
         @getNextProducts().finally ->
-          unitOfWork.resume()
+          entityCache.resume()
 
 
       sync: () =>
         @_manager.saveChanges()
         .then () =>
-          $log.log "breeze save succeeded"
-          unitOfWork.clear()
+          logger.log "breeze save succeeded"
+          entityCache.clear()
           return @getNextProducts()
 
         .catch (error) =>

@@ -15,8 +15,8 @@
 #
 angular.module('iwishua.models')
 .factory 'entityManagerFactory',
-  ['$q', '$log', 'breeze', 'config', 'model', 'unit-of-work', 'logger',
-  ($q, $log, breeze, config, model, unitOfWork, logger) ->
+  ['$q', '$log', 'breeze', 'config', 'model', 'entity-cache', 'logger',
+  ($q, $log, breeze, config, model, entityCache, logger) ->
 
     new class EntityManager
 
@@ -30,7 +30,7 @@ angular.module('iwishua.models')
 
         dataService = new breeze.DataService(@_dataService)
         @_manager = new breeze.EntityManager(dataService: dataService)
-        unitOfWork.initialize @_manager
+        entityCache.initialize @_manager
         model.setModel @_manager
 
 

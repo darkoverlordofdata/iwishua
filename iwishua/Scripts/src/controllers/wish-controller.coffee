@@ -17,8 +17,8 @@
 #
 angular.module('iwishua')
 .controller 'WishController',
-  ['$scope', '$cookies', '$modal', 'logger', 'datacontext', 'shuffle', 'config',
-  ($scope, $cookies, $modal, logger, datacontext, shuffle, config) ->
+  ['$scope', '$cookies', '$modal', 'logger', 'datacontext', 'shuffle', 'config', 'entity-cache', 'usSpinnerService',
+  ($scope, $cookies, $modal, logger, datacontext, shuffle, config, entityCache, usSpinnerService) ->
 
     new class WishController
 
@@ -38,10 +38,17 @@ angular.module('iwishua')
 
         logger.log "WishController initialized"
 
-        #
-        # Load the next products list
-        #
-        datacontext.ready().then(@onReady).catch(@handleError)
+        data = entityCache.importEntities()
+        if data
+          datacontext.ready()
+          .then () =>
+            @display data
+
+        else
+          #
+          # Load the next products list
+          #
+          datacontext.ready().then(@onReady).catch(@handleError)
 
       #
       # navLeft - Navigate Left
@@ -52,7 +59,7 @@ angular.module('iwishua')
         skip += perPage
         $cookies.skip = skip
         @isBusy = true
-        $scope.$broadcast 'start-spinner'
+        usSpinnerService.spin 'spinner-wish'
         datacontext.loadProducts(skip).then(@display, @handleError)
 
       #
@@ -65,7 +72,7 @@ angular.module('iwishua')
         skip = Math.max(0, skip)
         $cookies.skip = skip
         @isBusy = true
-        $scope.$broadcast 'start-spinner'
+        usSpinnerService.spin 'spinner-wish'
         datacontext.loadProducts(skip).then(@display, @handleError)
 
       onReady: () =>
@@ -78,6 +85,9 @@ angular.module('iwishua')
         logger.warning err
 
 
+      filter: (product) =>
+        state = product.entityAspect.entityState
+        !state.isDetached() and !state.isDeleted()
 
       #
       # details - Modal popup with product details
@@ -103,10 +113,8 @@ angular.module('iwishua')
       # @parm data
       #
       display: (data) =>
+        #entityCache.exportEntities 'home', data
 
-
-        console.log '[data.length = '+data.length + ']'
-        console.log '[skip = '+skip + ']'
         #
         # Parse the data for display
         #
@@ -146,8 +154,7 @@ angular.module('iwishua')
         #
         # Stop the spinner
         #
-        $scope.$broadcast 'stop-spinner'
-
+        usSpinnerService.stop 'spinner-wish'
 
 
 

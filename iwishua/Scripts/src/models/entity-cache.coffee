@@ -1,5 +1,5 @@
 #+--------------------------------------------------------------------+
-#| unit-of-work.coffee
+#| entity-cache.coffee
 #+--------------------------------------------------------------------+
 #| Copyright fivetwofivetwo, LLC (c) 2014
 #+--------------------------------------------------------------------+
@@ -11,25 +11,23 @@
 #|
 #+--------------------------------------------------------------------+
 #
-# Unit of Work service stores changed entities in browser local storage.
-# This simple version works for one EntityManager only and automatically captures changes
-# to that manager in a throttled way.
+# EntityCache service listens for changes and stores the changed entities in browser local storage.
+#
+# We're mainly interested in Deletes, but changes to descriptions also get tracked
 #
 angular.module('iwishua.models')
-.factory 'unit-of-work',
-  ['$log','$rootScope','$timeout','$window', 'breeze', 'logger', 'config',
-  ($log, $rootScope, $timeout, $window, breeze, logger, config) ->
+.factory 'entity-cache',
+  ['$rootScope','$timeout','$localStorage', 'breeze', 'logger', 'config',
+  ($rootScope, $timeout, $localStorage, breeze, logger, config) ->
 
-    new class UnitOfWorkService
+    new class EntityCache
 
-      _db                 : null
-      _delay              : 3000 # debounce for 3 seconds
-      _disabled           : undefined
-      _entityChangedToken : undefined
-      _eventName          : "UOW"
+      _delay              : 3000          # debounce for 3 seconds
+      _disabled           : undefined     # service disabled
+      _entityChangedToken : undefined     # event subscription
+      _eventName          : "entity-cache"
       _isRestoring        : false
       _manager            : undefined
-      _propChangeAction   : null
       _priorTimeout       : undefined
       _storeTypes         : null
       _stopped            : false
@@ -41,28 +39,25 @@ angular.module('iwishua.models')
       storeCount: => @_storeCount
 
       constructor: ->
-        logger.log "Unit Of Work Service initialized"
+        logger.log "Entity Cache Service initialized"
 
-        @_db = $window.localStorage
-        @_propChangeAction = breeze.PropertyChange
         @_storeTypes = []
 
       clear: () =>
         if @_disabled then return
         try
-          @_db.removeItem config.storeName
+          delete $localStorage[config.storeName]
           @_storeCount = 0
-          @sendMessage "Cleared Unit Of Work store"
+          @sendMessage "Cleared Entity Cache store"
           return
         catch e
           @_storeCount = undefined #/* err doesn't matter */
           return
 
       entityChanged: (changeArgs) =>
-        if @_isRestoring or @_stopped then return # ignore Unit Of Work service's own changes.
-        action = changeArgs.action
+        if @_isRestoring or @_stopped then return # ignore Entity Cache service's own changes.
 
-        if action is @_propChangeAction
+        if changeArgs.action is breeze.PropertyChange
           $timeout.cancel @_priorTimeout
           @_priorTimeout = $timeout(@store, @_delay, true)
         return
@@ -70,25 +65,33 @@ angular.module('iwishua.models')
 
       initialize: (entityManager) =>
         if typeof @_disabled is 'boolean'
-          throw new Error("Unit Of Work already enabled, can't enable twice.")
+          throw new Error("Entity Cache already enabled, can't enable twice.")
 
-        if !@_db
-          @_disabled = true
-          @_storeCount = 0
-          $log.error "Browser does not support local storage. Unit Of Work disabled."
-        else
-          @_manager = entityManager
-          @listenForChanges()
-          @_disabled = false
-          @sendMessage "Unit Of Work enabled"
+        @_manager = entityManager
+        @listenForChanges()
+        @_disabled = false
+        @sendMessage "Entity Cache enabled"
         return
-
           
       listenForChanges: () =>
         if @_entityChangedToken then return # already listening
         @_entityChangedToken = @_manager.entityChanged.subscribe(@entityChanged)
         @_disabled = false
         return
+
+      importEntities: () =>
+        if $localStorage[config.storeName]?
+#          @imports = @_manager.importEntities($localStorage["#{config.storeName}.#{key}"]).entities
+          @imports = @_manager.importEntities($localStorage[config.storeName]).entities
+          @_storeCount = @imports.length
+          @sendMessage "Imported #{@_storeCount} records(s) from store"
+          @imports
+        else false
+
+      exportEntities: (data) =>
+        @exports = @_manager.exportEntities(data)
+        @sendMessage "Exported #{@_storeCount} records(s) to store"
+        $localStorage[config.storeName] = @exports
 
       restore: () =>
         @imports = []
@@ -97,7 +100,7 @@ angular.module('iwishua.models')
         # imports changes from store
         @_isRestoring = true
         try
-          @changes = @_db.getItem(config.storeName)
+          @changes = $localStorage[config.storeName]
           if @changes
             # should confirm that metadata and app version
             # are still valid but this is a demo
@@ -108,8 +111,8 @@ angular.module('iwishua.models')
             @sendMessage "Restore found no stored changes"
 
         catch error #/* log but don't crash */
-          $log.error "Unit Of Work restore failed"
-          $log.error error
+          logger.error "Entity Cache restore failed"
+          logger.error error
         finally
           @_isRestoring = false
 
@@ -123,12 +126,12 @@ angular.module('iwishua.models')
           @_stopped = false
           @store()
           @listenForChanges()
-          @sendMessage "Unit Of Work re-enabled"
+          @sendMessage "Entity Cache re-enabled"
         return
 
           
       sendMessage: (message) =>
-        $log.log "Unit Of Work event: #{message}"
+        logger.log "Entity Cache event: #{message}"
         $rootScope.$broadcast @_eventName, message
         return
 
@@ -141,10 +144,10 @@ angular.module('iwishua.models')
           @_storeCount = @changes.length
           @sendMessage "Storing #{@_storeCount} change(s)"
           @exported = @_manager.exportEntities(@changes, false)
-          @_db.setItem config.storeName, @exported
+          $localStorage[config.storeName] = @exported
         else if @_storeCount isnt 0
           @sendMessage "No changes clearing store"
-          @_db.removeItem config.storeName
+          delete $localStorage[config.storeName]
           @_storeCount = 0
         return
 
@@ -152,12 +155,16 @@ angular.module('iwishua.models')
         if not @_disabled and not @_stopped
           @_stopped = true
           @stopListeningForChanges()
-          @sendMessage "Unit Of Work has been stopped"
+          @sendMessage "Entity Cache has been stopped"
         return
 
       stopListeningForChanges: () =>
         @_manager.entityChanged.unsubscribe @_entityChangedToken
         @_entityChangedToken = undefined
         return
+
+      getDeleted: () =>
+        entityType = @_manager.metadataStore.getEntityType('iwishuaproducts')
+        @_manager.getEntities(entityType, breeze.EntityState.Deleted)
 
   ]

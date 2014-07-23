@@ -1,15 +1,29 @@
 <!--
 Hidden View
 -->
-<div>
-    <div id="headerwrap2">
-        <header class="clearfix">
-            <h1>iwishua</h1>
-        </header>
-    </div><!-- /headerwrap -->
-    <div class="container">
+<div id="hidden-content" ng-controller="HiddenController as hidden">
+    <ul class="list-group"  ng-repeat="product in hidden.products">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-3">
+                    <img class="product_pic img-rounded"
+                        ng-src="{{ product.productImageUrl }}"
+                        alt="{{ product.productTitle }}" />
+                </div>
+                <div class="col-xs-6">
+                    {{ product.productName }}
+                </div>
+                <div class="col-xs-3">
+                    <button type="button"
+                            ng-click="hidden.restore(product)"
+                            class="btn btn-success pull-right">Restore</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <span us-spinner="{radius: 30, width: 8, length: 16}" spinner-key="spinner-restore"></span>
+    <button type="button"
+            ng-click="hidden.reset()"
+            class="btn btn-success pull-left">Reset</button>
 
-
-    <br />
-    </div>
 </div>

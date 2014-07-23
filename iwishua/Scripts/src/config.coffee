@@ -27,6 +27,7 @@ angular.module('iwishua')
       serviceName         : appUrl + 'tables/'
       serverTitle         : 'Microsoft Azure'
       pageSize            : 5
+      chunkSize           : 10
       storeName           : 'iwishua'
       interfaceName       : 'dataService'
       adapterName         : 'azure-mobile-services'
@@ -44,6 +45,8 @@ angular.module('iwishua')
         adapter.Q = $q
 
         # todo: Recalculate @pageSize for device form factor
+
+        @chunkSize = @pageSize * 2
 
   ]
 

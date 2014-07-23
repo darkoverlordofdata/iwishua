@@ -7,14 +7,14 @@
 ~/Scripts/src/lib/shuffle.js
 ~/Scripts/src/lib/capitalise.js
 ~/Scripts/src/lib/fix-collapse.js
-~/Scripts/src/lib/spinner.js
 ~/Scripts/src/controllers/navbar-controller.js
 ~/Scripts/src/controllers/fb-controller.js
 ~/Scripts/src/controllers/detail-controller.js
 ~/Scripts/src/controllers/wish-controller.js
+~/Scripts/src/controllers/hidden-controller.js
 ~/Scripts/src/models/models.js
 ~/Scripts/src/models/entity-manager-factory.js
-~/Scripts/src/models/unit-of-work.js
+~/Scripts/src/models/entity-cache.js
 ~/Scripts/src/models/products/model.js
 ~/Scripts/src/models/products/datacontext.js
 

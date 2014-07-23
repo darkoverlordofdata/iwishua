@@ -2,8 +2,8 @@
 Wish View
 -->
 <div id="wish-content" ng-controller="WishController as wish">
-    <div ng-show="wish.isBusy" class="wish-splash jumbotron masthead spinner">
-        <div id="wish-spinner"></div>
+    <div ng-show="wish.isBusy" class="wish-splash jumbotron masthead">
+        <span us-spinner="{radius: 30, width: 8, length: 16}" spinner-key="spinner-wish"></span>
     </div>
     <div ng-hide="wish.isBusy" class="products"
          ng-swipe-left="wish.navLeft($event)"
@@ -12,7 +12,7 @@ Wish View
         <div masonry>
             <div class="masonry-brick {{ product.className }}"
                  ng-click="wish.details('{{ product.id }}')"
-                 ng-repeat="product in wish.products"
+                 ng-repeat="product in wish.products | filter:wish.filter"
                  >
                 <img class="{{ product.aligned }} product_pic img-rounded"
                      ng-src="{{ product.productImageUrl }}" alt="{{ product.productTitle }}" />

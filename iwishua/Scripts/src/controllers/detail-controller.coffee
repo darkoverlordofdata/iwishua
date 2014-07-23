@@ -40,12 +40,8 @@ angular.module('iwishua')
         $modalInstance.dismiss('cancel')
 
       delete: () =>
+        datacontext.deleteProduct productData
         productData.isPublished = false
-#
-#        datacontext.deleteProduct productData
-#        state = productData.entityAspect.entityState
-#        console.log 'Detached : '+state.isDetached()
-#        console.log 'Deleted  : '+state.isDeleted()
         $modalInstance.close()
 
       wish: () ->
