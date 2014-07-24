@@ -17,27 +17,32 @@
 #
 angular.module('iwishua')
 .controller 'HiddenController',
-  ['$scope', '$window', '$route', '$cookies', '$localStorage', 'logger', 'datacontext', 'config', 'entity-cache', 'usSpinnerService',
-  ($scope, $window, $route, $cookies, $localStorage, logger, datacontext, config, entityCache, usSpinnerService) ->
+  ['$scope', '$window', '$location', '$route', '$localStorage', 'logger', 'datacontext', 'config', 'cache', 'usSpinnerService',
+  ($scope, $window, $location, $route, $localStorage, logger, datacontext, config, cache, usSpinnerService) ->
 
     new class HiddenController
 
 
       constructor: ->
         logger.log "HiddenController initialized"
-        @products = entityCache.getDeleted()
+        cache.importEntities()
+        @products = cache.getDeleted()
+        @config = config
 
       restore: (product) =>
-        $scope.$on entityCache.eventName(), () =>
+
+        $scope.$on cache.eventName(), () =>
           usSpinnerService.stop 'spinner-restore'
-          $route.reload()
+          if datacontext.counts.Deleted is 0
+            $location.path($window.location.pathname)
+          else
+            $route.reload()
 
         datacontext.unDeleteProduct product
         usSpinnerService.spin 'spinner-restore'
 
       reset: =>
         $localStorage.$reset()
-        delete $cookies['skip']
         $window.location.replace($window.location.origin+$window.location.pathname)
 
 

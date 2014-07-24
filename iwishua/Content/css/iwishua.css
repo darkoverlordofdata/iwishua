@@ -8,6 +8,10 @@ body {
 /* @see http://angular-ui.github.io/bootstrap/ */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
+.scroll-list {
+    overflow:auto;
+    height: 350px;
+}
 .wish-splash {
     height: 200px;
 
@@ -44,10 +48,6 @@ img.user_pic {
     width: 28px;
 }
 
-.products {
-    max-width: 468px;
-}
-
 .masonry-brick.horz {
     width:  200px;
     height: 100px;
@@ -68,10 +68,6 @@ img.user_pic {
 
 .masonry-brick p {
     padding: 5px;
-}
-.masonry-brick.real_big {
-    height: 220px;
-    width: 220px;
 }
 
 

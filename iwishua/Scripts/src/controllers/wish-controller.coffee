@@ -17,8 +17,8 @@
 #
 angular.module('iwishua')
 .controller 'WishController',
-  ['$scope', '$cookies', '$modal', 'logger', 'datacontext', 'shuffle', 'config', 'entity-cache', 'usSpinnerService',
-  ($scope, $cookies, $modal, logger, datacontext, shuffle, config, entityCache, usSpinnerService) ->
+  ['$scope', '$localStorage', '$modal', 'matchmedia', 'logger', 'datacontext', 'shuffle', 'config', 'cache', 'usSpinnerService',
+  ($scope, $localStorage, $modal, matchmedia, logger, datacontext, shuffle, config, cache, usSpinnerService) ->
 
     new class WishController
 
@@ -31,24 +31,30 @@ angular.module('iwishua')
       ]
 
       perPage = config.pageSize
-      skip = Math.max(0, parseInt($cookies.skip ? 0, 10))
-      isBusy              : true
+      skip = Math.max(0, parseInt($localStorage.skip ? 0, 10))
+
+      isBusy: true
 
       constructor: ->
 
         logger.log "WishController initialized"
 
-        data = entityCache.importEntities()
-        if data
-          datacontext.ready()
-          .then () =>
-            @display data
+        unphone = matchmedia.onPhone (mediaQueryList) =>
+          @isPhone = mediaQueryList.matches
 
+
+        if (data = cache.importEntities())
+          datacontext.ready().then(() => @display(data)).catch(@handleError)
         else
-          #
-          # Load the next products list
-          #
           datacontext.ready().then(@onReady).catch(@handleError)
+
+
+        #
+        # Destructor - clean up the media event sub
+        #
+        $scope.$on '$destroy', -> unphone()
+
+
 
       #
       # navLeft - Navigate Left
@@ -57,7 +63,7 @@ angular.module('iwishua')
       #
       navLeft: ($event) ->
         skip += perPage
-        $cookies.skip = skip
+        $localStorage.skip = skip
         @isBusy = true
         usSpinnerService.spin 'spinner-wish'
         datacontext.loadProducts(skip).then(@display, @handleError)
@@ -70,7 +76,7 @@ angular.module('iwishua')
       navRight: ($event) ->
         skip -= perPage
         skip = Math.max(0, skip)
-        $cookies.skip = skip
+        $localStorage.skip = skip
         @isBusy = true
         usSpinnerService.spin 'spinner-wish'
         datacontext.loadProducts(skip).then(@display, @handleError)
@@ -113,8 +119,6 @@ angular.module('iwishua')
       # @parm data
       #
       display: (data) =>
-        #entityCache.exportEntities 'home', data
-
         #
         # Parse the data for display
         #

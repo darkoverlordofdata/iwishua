@@ -12,9 +12,8 @@
 ~/Scripts/src/controllers/detail-controller.js
 ~/Scripts/src/controllers/wish-controller.js
 ~/Scripts/src/controllers/hidden-controller.js
-~/Scripts/src/models/models.js
 ~/Scripts/src/models/entity-manager-factory.js
-~/Scripts/src/models/entity-cache.js
+~/Scripts/src/models/products/cache.js
 ~/Scripts/src/models/products/model.js
 ~/Scripts/src/models/products/datacontext.js
 

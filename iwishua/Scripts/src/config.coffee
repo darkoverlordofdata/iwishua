@@ -28,7 +28,6 @@ angular.module('iwishua')
       serverTitle         : 'Microsoft Azure'
       pageSize            : 5
       chunkSize           : 10
-      storeName           : 'iwishua'
       interfaceName       : 'dataService'
       adapterName         : 'azure-mobile-services'
       logThreshold        : 1 | 4 | 8 | 16
@@ -46,6 +45,7 @@ angular.module('iwishua')
 
         # todo: Recalculate @pageSize for device form factor
 
+#        @pageSize = if matchmedia.isPhone() then 5 else 10
         @chunkSize = @pageSize * 2
 
   ]

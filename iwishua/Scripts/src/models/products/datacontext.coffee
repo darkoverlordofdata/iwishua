@@ -13,13 +13,14 @@
 #
 # datacontext service encapsulates data access and model definition
 #
-angular.module('iwishua.models')
+angular.module('iwishua')
 .factory 'datacontext',
-  ['$q', '$http', 'breeze', 'entityManagerFactory', 'entity-cache', 'logger', 'config',
-  ($q, $http, breeze, entityManagerFactory, entityCache, logger, config) ->
+  ['$q', '$http', 'breeze', 'entityManagerFactory', 'cache', 'logger', 'config',
+  ($q, $http, breeze, entityManagerFactory, cache, logger, config) ->
 
     new class ProductsDataContext
 
+      _tableName          : 'iwishuaproducts'
       _manager            : null
       _productsType       : null
 
@@ -55,13 +56,13 @@ angular.module('iwishua.models')
         .then (entityManager) =>
           @_manager = entityManager
           @_manager.entityChanged.subscribe @entityCountsChanged
-          @_productsType = @_manager.metadataStore.getEntityType('iwishuaproducts')
+          @_productsType = @_manager.metadataStore.getEntityType(@_tableName)
           @updateCounts()
           #
           # breezejs inlineCount is an undefined value
           # as a workaround, use OData api
           #
-          $http(method: 'GET', url: "#{config.serviceName}/iwishuaproducts?$top=0&$inlinecount=allpages&")
+          $http(method: 'GET', url: "#{config.serviceName}/#{@_tableName}?$top=0&$inlinecount=allpages&")
           .success (data) =>
             @maxCount = data.count
           return
@@ -87,7 +88,7 @@ angular.module('iwishua.models')
 
       # Create the query
         query = breeze.EntityQuery
-        .from('iwishuaproducts')
+        .from(@_tableName)
         .skip(parseInt(skip, 10))
         .take(parseInt(config.pageSize, 10))
         .where('isPublished', 'eq', true)
@@ -114,7 +115,7 @@ angular.module('iwishua.models')
         # Warning: the cache will accumulate entities that
         # have been deleted by other users until it is entirely rebuilt via 'refresh'
         .catch (error) =>
-          error.message = prettifyErrorMessage(error.message)
+          error.message = @prettifyErrorMessage(error.message)
           status = if error.status then error.status + ' - ' else ''
           err = status + (if error.message then error.message else 'Unknown error check console.log.')
           err += '\nIs the server running?'
@@ -124,23 +125,23 @@ angular.module('iwishua.models')
         @_manager.hasChanges()
 
       loadProducts: (skip = 0) =>
-        entityCache.restore()
+        cache.restore()
         @getNextProducts(skip)
 
       # Clear everything local and reload from server.
       reset: () =>
-        entityCache.stop()
-        entityCache.clear()
+        cache.stop()
+        cache.clear()
         @_manager.clear()
         @getNextProducts().finally ->
-          entityCache.resume()
+          cache.resume()
 
 
       sync: () =>
         @_manager.saveChanges()
         .then () =>
           logger.log "breeze save succeeded"
-          entityCache.clear()
+          cache.clear()
           return @getNextProducts()
 
         .catch (error) =>
@@ -149,14 +150,14 @@ angular.module('iwishua.models')
           error.message = msg
           throw error # for downstream callers to see
 
-      prettifyErrorMessage = (message) ->
+      prettifyErrorMessage: (message) =>
         # When message returns the Product guid id,
         # try to replace with the Product title which displays better
         re=/with id '([1234567890abcdef\-]*)'/i
         match = message and message.match(re)
         if match
           id = match[1]
-          product = id and manager.getEntityByKey('iwishuaproducts',id)
+          product = id and manager.getEntityByKey(@_tableName,id)
           if product
             message = message.replace(re,'named "'+product.productTitle+'"')+" [key: "+id+"]"
         return message

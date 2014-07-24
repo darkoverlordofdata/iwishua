@@ -23,13 +23,13 @@ facebook_app_id = '1495109164043412'
 angular.module('iwishua', [
   'ngTouch'
   'ngRoute'
-  'ngCookies'
   'ngStorage'
   'ngFacebook'
   'angularSpinner'
+  'matchmedia-ng'
   'wu.masonry'
   'ui.bootstrap'
-  'iwishua.models'
+  'breeze.angular'
 ])
 # ----------------------------
 # Routes

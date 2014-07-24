@@ -14,7 +14,7 @@
 # Sets up the model with client-side metadata 
 # and any other model extensions we need (none so far)
 #
-angular.module('iwishua.models')
+angular.module('iwishua')
 .factory 'model', 
   ['$log','$q','breeze', 'logger',
   ($log, $q, breeze, logger) ->

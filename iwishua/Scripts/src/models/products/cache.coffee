@@ -15,13 +15,15 @@
 #
 # We're mainly interested in Deletes, but changes to descriptions also get tracked
 #
-angular.module('iwishua.models')
-.factory 'entity-cache',
-  ['$rootScope','$timeout','$localStorage', 'breeze', 'logger', 'config',
-  ($rootScope, $timeout, $localStorage, breeze, logger, config) ->
+angular.module('iwishua')
+.factory 'cache',
+  ['$rootScope','$timeout','$localStorage', 'breeze', 'logger',
+  ($rootScope, $timeout, $localStorage, breeze, logger) ->
 
     new class EntityCache
 
+      _tableName          : 'iwishuaproducts'
+      _storeName          : 'products-cache'
       _delay              : 3000          # debounce for 3 seconds
       _disabled           : undefined     # service disabled
       _entityChangedToken : undefined     # event subscription
@@ -46,7 +48,7 @@ angular.module('iwishua.models')
       clear: () =>
         if @_disabled then return
         try
-          delete $localStorage[config.storeName]
+          delete $localStorage[@_storeName]
           @_storeCount = 0
           @sendMessage "Cleared Entity Cache store"
           return
@@ -80,9 +82,8 @@ angular.module('iwishua.models')
         return
 
       importEntities: () =>
-        if $localStorage[config.storeName]?
-#          @imports = @_manager.importEntities($localStorage["#{config.storeName}.#{key}"]).entities
-          @imports = @_manager.importEntities($localStorage[config.storeName]).entities
+        if $localStorage[@_storeName]?
+          @imports = @_manager.importEntities($localStorage[@_storeName]).entities
           @_storeCount = @imports.length
           @sendMessage "Imported #{@_storeCount} records(s) from store"
           @imports
@@ -91,7 +92,7 @@ angular.module('iwishua.models')
       exportEntities: (data) =>
         @exports = @_manager.exportEntities(data)
         @sendMessage "Exported #{@_storeCount} records(s) to store"
-        $localStorage[config.storeName] = @exports
+        $localStorage[@_storeName] = @exports
 
       restore: () =>
         @imports = []
@@ -100,7 +101,7 @@ angular.module('iwishua.models')
         # imports changes from store
         @_isRestoring = true
         try
-          @changes = $localStorage[config.storeName]
+          @changes = $localStorage[@_storeName]
           if @changes
             # should confirm that metadata and app version
             # are still valid but this is a demo
@@ -144,10 +145,10 @@ angular.module('iwishua.models')
           @_storeCount = @changes.length
           @sendMessage "Storing #{@_storeCount} change(s)"
           @exported = @_manager.exportEntities(@changes, false)
-          $localStorage[config.storeName] = @exported
+          $localStorage[@_storeName] = @exported
         else if @_storeCount isnt 0
           @sendMessage "No changes clearing store"
-          delete $localStorage[config.storeName]
+          delete $localStorage[@_storeName]
           @_storeCount = 0
         return
 
@@ -164,7 +165,7 @@ angular.module('iwishua.models')
         return
 
       getDeleted: () =>
-        entityType = @_manager.metadataStore.getEntityType('iwishuaproducts')
+        entityType = @_manager.metadataStore.getEntityType(@_tableName)
         @_manager.getEntities(entityType, breeze.EntityState.Deleted)
 
   ]

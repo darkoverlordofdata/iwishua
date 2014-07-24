@@ -31,7 +31,9 @@ angular.module('iwishua')
         @productName = productData.productName
         @productImageUrl = productData.productImageUrl
         @productTitle = productData.productTitle
+
         $scope.product = @
+
 
       ok: () =>
         $modalInstance.close()

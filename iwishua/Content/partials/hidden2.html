@@ -1,0 +1,80 @@
+<!--
+Hidden View
+-->
+<div id="hidden-content" ng-controller="HiddenController as hidden">
+
+    <tabset>
+
+        <tab heading="Deleted Gifts">
+            <div class="scroll-liszt">
+            <ul class="list-group"  ng-repeat="product in hidden.products">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <img class="product_pic img-rounded"
+                                ng-src="{{ product.productImageUrl }}"
+                                alt="{{ product.productTitle }}" />
+                        </div>
+                        <div class="col-xs-6">
+                            {{ product.productName }}
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button"
+                                    ng-click="hidden.restore(product)"
+                                    class="btn btn-success pull-right">Restore</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            </div>
+            <span us-spinner="{radius: 30, width: 8, length: 16}" spinner-key="spinner-restore"></span>
+        </tab>
+
+        <tab heading="Information">
+
+            <div class="well">
+                <form role="form">
+
+                    <div class="row">
+                        <label class="col-xs-2" for="title">Application title: </label>
+                        <div class="col-xs-8">
+                            <input ng-model="hidden.config.appTitle" size="30" type="text" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-xs-2" for="title">Service type: </label>
+                        <div class="col-xs-8">
+                            <input ng-model="hidden.config.serviceType" size="30" type="text" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-xs-2" for="title">Service name: </label>
+                        <div class="col-xs-8">
+                            <input ng-model="hidden.config.serviceName" size="30" type="text" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-xs-2" for="title">Log threshhold: </label>
+                        <div class="col-xs-8">
+                            <input ng-model="hidden.config.logThreshold" size="30" type="text" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-xs-2" for="reset">Reset local storage: </label>
+                        <div class="col-xs-8">
+                            <button id="reset" type="button"
+                                ng-click="hidden.reset()"
+                                class="btn btn-success">Reset</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </tab>
+
+    </tabset>
+</div>
