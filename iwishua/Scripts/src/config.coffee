@@ -15,7 +15,6 @@
 #
 angular.module('iwishua')
 .factory 'config',
-  ['$q','breeze',
   ($q, breeze) ->
 
     new class Config
@@ -48,5 +47,5 @@ angular.module('iwishua')
 #        @pageSize = if matchmedia.isPhone() then 5 else 10
         @chunkSize = @pageSize * 2
 
-  ]
+
 

@@ -15,14 +15,13 @@
 #
 angular.module('iwishua')
 .factory 'entityManagerFactory',
-  ['$q', '$log', 'breeze', 'config', 'model', 'cache', 'logger',
-  ($q, $log, breeze, config, model, cache, logger) ->
+  ($q, breeze, config, model, cache, logger) ->
 
     new class EntityManager
 
       _manager              : null
       _dataService:
-        hasServerMetadata   : false # config.hasServerMetadata
+        hasServerMetadata   : false
         serviceName         : config.serviceName
 
       constructor: ->
@@ -36,5 +35,3 @@ angular.module('iwishua')
 
       getEntityManager: () ->
         $q.when(@_manager)
-
-  ]

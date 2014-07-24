@@ -15,7 +15,6 @@
 #
 angular.module('iwishua')
 .factory 'datacontext',
-  ['$q', '$http', 'breeze', 'entityManagerFactory', 'cache', 'logger', 'config',
   ($q, $http, breeze, entityManagerFactory, cache, logger, config) ->
 
     new class ProductsDataContext
@@ -164,4 +163,3 @@ angular.module('iwishua')
         return message
 
 
-  ]

@@ -19,7 +19,6 @@
 #
 angular.module('iwishua')
 .factory 'logger',
-  ['$log', 'config',
   ($log, config) ->
 
     new class Logger
@@ -95,5 +94,4 @@ angular.module('iwishua')
           toastr.info message, title
           $log.warn "Warning: " + message
 
-  ]
 

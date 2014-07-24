@@ -17,7 +17,6 @@
 #
 angular.module('iwishua')
 .controller 'NavbarController',
-  ['$scope', 'logger', '$location',
   ($scope, logger, $location) ->
 
     new class NavbarController
@@ -28,4 +27,3 @@ angular.module('iwishua')
       active: (viewLocation) ->
         viewLocation is $location.path()
 
-  ]

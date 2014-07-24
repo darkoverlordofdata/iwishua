@@ -17,7 +17,6 @@
 #
 angular.module('iwishua')
 .controller 'HiddenController',
-  ['$scope', '$window', '$location', '$route', '$localStorage', 'logger', 'datacontext', 'config', 'cache', 'usSpinnerService',
   ($scope, $window, $location, $route, $localStorage, logger, datacontext, config, cache, usSpinnerService) ->
 
     new class HiddenController
@@ -68,5 +67,3 @@ angular.module('iwishua')
         else
           usSpinnerService.stop @spinnerName
 
-
-  ]

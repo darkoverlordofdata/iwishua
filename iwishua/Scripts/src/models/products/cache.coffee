@@ -17,7 +17,6 @@
 #
 angular.module('iwishua')
 .factory 'cache',
-  ['$rootScope','$timeout','$localStorage', 'breeze', 'logger',
   ($rootScope, $timeout, $localStorage, breeze, logger) ->
 
     new class EntityCache
@@ -168,4 +167,4 @@ angular.module('iwishua')
         entityType = @_manager.metadataStore.getEntityType(@_tableName)
         @_manager.getEntities(entityType, breeze.EntityState.Deleted)
 
-  ]
+

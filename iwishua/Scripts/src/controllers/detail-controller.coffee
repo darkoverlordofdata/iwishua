@@ -17,7 +17,6 @@
 #
 angular.module('iwishua')
 .controller 'DetailController',
-  ['logger', '$scope', '$modalInstance', 'productData', 'datacontext',
   (logger, $scope, $modalInstance, productData, datacontext) ->
 
     #
@@ -49,4 +48,3 @@ angular.module('iwishua')
       wish: () ->
         $modalInstance.close()
 
-  ]

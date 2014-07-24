@@ -17,7 +17,6 @@
 #
 angular.module('iwishua')
 .controller 'FBController',
-  ['$scope', 'logger', '$facebook',
   ($scope, logger, $facebook) ->
 
     new class FBController
@@ -29,4 +28,3 @@ angular.module('iwishua')
 
           @username = response.first_name
 
-  ]

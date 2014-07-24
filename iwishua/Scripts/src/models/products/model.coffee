@@ -16,7 +16,6 @@
 #
 angular.module('iwishua')
 .factory 'model', 
-  ['$log','$q','breeze', 'logger',
   ($log, $q, breeze, logger) ->
 
     new class ProductsModel
@@ -47,4 +46,4 @@ angular.module('iwishua')
             isPublished:          type: breeze.DataType.Boolean
 
         $q.when(manager)
-  ]
+

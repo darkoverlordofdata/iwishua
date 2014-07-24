@@ -17,7 +17,6 @@
 #
 angular.module('iwishua')
 .controller 'WishController',
-  ['$scope', '$localStorage', '$modal', 'matchmedia', 'logger', 'datacontext', 'shuffle', 'config', 'cache', 'usSpinnerService',
   ($scope, $localStorage, $modal, matchmedia, logger, datacontext, shuffle, config, cache, usSpinnerService) ->
 
     new class WishController
@@ -188,5 +187,3 @@ angular.module('iwishua')
         else
           usSpinnerService.stop @spinnerName
 
-
-  ]
