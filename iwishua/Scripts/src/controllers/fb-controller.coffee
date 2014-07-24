@@ -27,8 +27,6 @@ angular.module('iwishua')
 
         $facebook.api("/me").then (response) =>
 
-          #logger.info "Hello, "+response.first_name
           @username = response.first_name
-          #$scope.username = response.first_name
 
   ]

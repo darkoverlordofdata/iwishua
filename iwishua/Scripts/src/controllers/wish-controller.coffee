@@ -34,27 +34,36 @@ angular.module('iwishua')
       skip = Math.max(0, parseInt($localStorage.skip ? 0, 10))
 
       isBusy: true
+      spinnerName: 'spinner-wish'
 
       constructor: ->
 
         logger.log "WishController initialized"
 
-        unphone = matchmedia.onPhone (mediaQueryList) =>
+        #
+        # Subscribe to media event
+        #
+        dispose = matchmedia.onPhone (mediaQueryList) =>
           @isPhone = mediaQueryList.matches
+        #
+        # Destructor - clean up the media event subscription
+        #
+        $scope.$on '$destroy', -> dispose()
 
-
+        #
+        # Get the data from cache or server
+        #
         if (data = cache.importEntities())
           datacontext.ready().then(() => @display(data)).catch(@handleError)
         else
-          datacontext.ready().then(@onReady).catch(@handleError)
+          datacontext.ready().then(@fetchData).catch(@handleError)
 
-
-        #
-        # Destructor - clean up the media event sub
-        #
-        $scope.$on '$destroy', -> unphone()
-
-
+      #
+      # fetchData - Get data from server
+      #
+      fetchData: () =>
+        @spinner true
+        datacontext.loadProducts(skip).then(@display, @handleError)
 
       #
       # navLeft - Navigate Left
@@ -63,10 +72,9 @@ angular.module('iwishua')
       #
       navLeft: ($event) ->
         skip += perPage
+        skip = Math.min(datacontext.maxCount-perPage, skip)
         $localStorage.skip = skip
-        @isBusy = true
-        usSpinnerService.spin 'spinner-wish'
-        datacontext.loadProducts(skip).then(@display, @handleError)
+        @fetchData()
 
       #
       # navRight - Navigate Right
@@ -77,53 +85,29 @@ angular.module('iwishua')
         skip -= perPage
         skip = Math.max(0, skip)
         $localStorage.skip = skip
-        @isBusy = true
-        usSpinnerService.spin 'spinner-wish'
-        datacontext.loadProducts(skip).then(@display, @handleError)
+        @fetchData()
 
-      onReady: () =>
-        @isBusy = true
-        datacontext.loadProducts(skip).then(@display, @handleError)
-
+      #
+      # handleError - process the error event
+      #
+      # @parm error
+      #
       handleError: (error) =>
-        @isBusy = false
+        @spinner false
         err = if typeof error is 'string' then error else error.message
         logger.warning err
 
 
-      filter: (product) =>
-        state = product.entityAspect.entityState
-        !state.isDetached() and !state.isDeleted()
-
-      #
-      # details - Modal popup with product details
-      #
-      # @parm id
-      #
-      details: (id) ->
-
-        for product in @products
-          if id is product.id
-            $modal.open
-              size          : 'sm'
-              templateUrl   : 'Content/partials/wish-details.html'
-              controller    : 'DetailController'
-              resolve:
-                productData: () ->
-                  return product
-
-            return
       #
       # display
       #
       # @parm data
       #
       display: (data) =>
+
         #
         # Parse the data for display
         #
-        @isBusy = false
-
         if skip+perPage > data.length
           @products = shuffle(data.slice(-perPage))
         else
@@ -143,6 +127,9 @@ angular.module('iwishua')
           attrs.productName = name
 
 
+        #
+        # Generate class and orientation
+        #
         c = 0
         className = patterns[Math.floor((Math.random() * patterns.length))]
         logger.info 'Pattern: ' + (s[0] for s in className)
@@ -158,8 +145,48 @@ angular.module('iwishua')
         #
         # Stop the spinner
         #
-        usSpinnerService.stop 'spinner-wish'
+        @spinner false
 
+
+      #
+      # filter - select this product?
+      #
+      # @parm product
+      #
+      filter: (product) =>
+        state = product.entityAspect.entityState
+        !state.isDetached() and !state.isDeleted()
+
+      #
+      # details - Modal popup with product details
+      #
+      # @parm id
+      #
+      details: (id) =>
+
+        for product in @products
+          if id is product.id
+            $modal.open
+              size          : 'sm'
+              templateUrl   : 'Content/partials/wish-details.html'
+              controller    : 'DetailController'
+              resolve:
+                productData: () ->
+                  return product
+
+            return
+
+      #
+      # spinner - Start/Stop the spinner
+      #
+      # @parm start - true/false
+      #
+      spinner: (start) =>
+
+        if (@isBusy = start)
+          usSpinnerService.spin @spinnerName
+        else
+          usSpinnerService.stop @spinnerName
 
 
   ]

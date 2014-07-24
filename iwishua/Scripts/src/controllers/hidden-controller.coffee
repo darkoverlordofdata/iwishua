@@ -22,6 +22,8 @@ angular.module('iwishua')
 
     new class HiddenController
 
+      isBusy: true
+      spinnerName: 'spinner-restore'
 
       constructor: ->
         logger.log "HiddenController initialized"
@@ -29,21 +31,42 @@ angular.module('iwishua')
         @products = cache.getDeleted()
         @config = config
 
+      #
+      # restore - Undelete the product
+      #
+      # @parm product
+      #
       restore: (product) =>
 
         $scope.$on cache.eventName(), () =>
-          usSpinnerService.stop 'spinner-restore'
+          @spinner false
           if datacontext.counts.Deleted is 0
             $location.path($window.location.pathname)
           else
             $route.reload()
 
         datacontext.unDeleteProduct product
-        usSpinnerService.spin 'spinner-restore'
+        @spinner true
 
+      #
+      # reset - Clear the cache
+      #
       reset: =>
+
         $localStorage.$reset()
         $window.location.replace($window.location.origin+$window.location.pathname)
+
+      #
+      # spinner - Start/Stop the spinner
+      #
+      # @parm start - true/false
+      #
+      spinner: (start) =>
+
+        if (@isBusy = start)
+          usSpinnerService.spin @spinnerName
+        else
+          usSpinnerService.stop @spinnerName
 
 
   ]

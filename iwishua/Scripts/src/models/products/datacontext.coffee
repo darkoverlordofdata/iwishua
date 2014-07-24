@@ -25,6 +25,7 @@ angular.module('iwishua')
       _productsType       : null
 
       counts              : null
+      maxCount            : 0
 
       constructor: ->
         logger.log "ProductsDataContext initialized"
