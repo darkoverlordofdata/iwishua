@@ -29,7 +29,7 @@ angular.module('iwishua')
         ['vert', 'vert', 'vert', 'vert', 'vert']
       ]
 
-      perPage = config.pageSize
+      perPage = if matchmedia.isPhone() then config.pageSize else Math.floor(config.pageSize * 1.5)
       skip = Math.max(0, parseInt($localStorage.skip ? 0, 10))
 
       isBusy: true
@@ -58,13 +58,6 @@ angular.module('iwishua')
           datacontext.ready().then(@fetchData).catch(@handleError)
 
       #
-      # fetchData - Get data from server
-      #
-      fetchData: () =>
-        @spinner true
-        datacontext.loadProducts(skip).then(@display, @handleError)
-
-      #
       # navLeft - Navigate Left
       #
       # @parm $event
@@ -85,6 +78,13 @@ angular.module('iwishua')
         skip = Math.max(0, skip)
         $localStorage.skip = skip
         @fetchData()
+
+      #
+      # fetchData - Get data from server
+      #
+      fetchData: () =>
+        @spinner true
+        datacontext.loadProducts(skip).then(@display, @handleError)
 
       #
       # handleError - process the error event
@@ -134,7 +134,8 @@ angular.module('iwishua')
         logger.info 'Pattern: ' + (s[0] for s in className)
         for attrs in @products
 
-          attrs.className = className[c++]
+          attrs.className = className[c % 5]
+          c += 1
           if attrs.className is 'horz'
             if (Math.floor(Math.random() * new Date().getTime())) & 1
               attrs.aligned = 'alignleft'

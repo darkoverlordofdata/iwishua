@@ -1,19 +1,24 @@
 body {
-    padding-top: 60px;
-    padding-left: 10px;
+    padding-top: 3.72em;
+    padding-left: 0.625;
     /*padding-bottom: 40px;*/
     overflow: hidden;
+}
+
+.logo {
+    font-family: 'Acme', sans-serif;
+    font-size: 1.625em;
+}
+
+#fb-name {
+    font-size: 1em;
 }
 
 /* @see http://angular-ui.github.io/bootstrap/ */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
-.scroll-list {
-    overflow:auto;
-    height: 350px;
-}
 .wish-splash {
-    height: 200px;
+    height: 12.5em;
 
 }
 
@@ -23,13 +28,6 @@ body {
     outline: none;
 }
 
-
-img.product_pic {
-    height: 75px;
-    width: 75px;
-    padding: 5px;
-    border-radius: 10px;
-}
 
 img.detail_pic {
     height: 200px;
@@ -48,26 +46,37 @@ img.user_pic {
     width: 28px;
 }
 
+
+/* Base stylesheet - 320px (iPhone) */
+
+img.product_pic {
+    height: 5.5em;
+    width: 5.5em;
+    border-radius: .5em;
+}
+
 .masonry-brick.horz {
-    width:  200px;
-    height: 100px;
-    font-size: 10pt;
+    width:  14em;
+    height: 7em;
+    font-size: 0.8em;
     background-color: #151515;
-    margin: 5px;
-    border-radius: 5px;
+    margin: .5em;
+    padding: .5em;
+    border-radius: .5em;
 }
 
 .masonry-brick.vert {
-    width: 100px;
-    height: 160px;
-    font-size: 10pt;
+    width: 7em;
+    height: 14em;
+    font-size: 0.8em;
     background-color: #151515;
-    margin: 5px;
-    border-radius: 5px;
+    margin: .5em;
+    padding: .5em;
+    border-radius: .5em;
 }
 
 .masonry-brick p {
-    padding: 5px;
+    padding: .25em;
 }
 
 
@@ -77,6 +86,76 @@ img.aligncenter {display: block; margin-left: auto; margin-right: auto}
 .alignright {float:right; }
 .alignleft {float:left; }
 .aligncenter {display: block; margin-left: auto; margin-right: auto}
+
+/* Breakpoint: 384px (Google Nexus4) */
+@media all and (min-width: 24em) {
+
+    img.product_pic {
+        height: 5.5em;
+        width: 5.5em;
+        border-radius: .5em;
+    }
+
+    .masonry-brick.horz {
+        width:  14em;
+        height: 9em;
+        font-size: 0.8em;
+        background-color: #151515;
+        margin: .5em;
+        padding: .5em;
+        border-radius: .5em;
+    }
+
+    .masonry-brick.vert {
+        width: 9em;
+        height: 14em;
+        font-size: 0.8em;
+        background-color: #151515;
+        margin: .5em;
+        padding: .5em;
+        border-radius: .5em;
+    }
+
+    .masonry-brick p {
+        padding: .25em;
+    }
+
+
+}
+
+/* Breakpoint: 800px */
+@media all and (min-width: 50em) {
+
+    img.product_pic {
+        height: 7em;
+        width: 7em;
+        border-radius: 1em;
+    }
+    .masonry-brick.horz {
+        width:  18em;
+        height: 9em;
+        font-size: 1em;
+        background-color: #151515;
+        margin: 1em;
+        padding: 1em;
+        border-radius: 1em;
+    }
+
+    .masonry-brick.vert {
+        width: 9em;
+        height: 14em;
+        font-size: 1em;
+        background-color: #151515;
+        margin: 1em;
+        padding: 1em;
+        border-radius: 1em;
+    }
+
+    .masonry-brick p {
+        padding: 5px;
+    }
+}
+
 
 #headerwrap {
     background: url(//cache.nebula.phx3.secureserver.net/obj/QTZBQTg2QUE3NDI4QkE4MzZFMjY6YTZlMGVlMTM1Yjc4YTdhZTVlOWI5ODBjZmUwY2ZiMjQ=) no-repeat center top;
@@ -149,6 +228,7 @@ img.aligncenter {display: block; margin-left: auto; margin-right: auto}
     font-size: 80px;
     font-weight: bold;
     text-shadow: 2px 2px 2px #000;
+    font-family: 'Acme', sans-serif;
 }
 
 #headerwrap2 p {
