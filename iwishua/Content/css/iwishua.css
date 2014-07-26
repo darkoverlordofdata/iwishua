@@ -2,7 +2,7 @@ body {
     padding-top: 3.72em;
     padding-left: 0.625;
     /*padding-bottom: 40px;*/
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .logo {
@@ -12,6 +12,17 @@ body {
 
 #fb-name {
     font-size: 1em;
+}
+
+/* Overthrow CSS:
+   Enable overflow: auto on elements with overthrow class when html element has overthrow class too */
+.overthrow-enabled .overthrow {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.overthrow-enabled .overthrow {
+    height: 400px;
 }
 
 /* @see http://angular-ui.github.io/bootstrap/ */
@@ -47,7 +58,7 @@ img.user_pic {
 }
 
 
-/* Base stylesheet - 320px (iPhone) */
+/* Mobile First base style - 320px (iPhone) */
 
 img.product_pic {
     height: 5.5em;
@@ -87,7 +98,7 @@ img.aligncenter {display: block; margin-left: auto; margin-right: auto}
 .alignleft {float:left; }
 .aligncenter {display: block; margin-left: auto; margin-right: auto}
 
-/* Breakpoint: 384px (Google Nexus4) */
+/* Mobile First Breakpoint: 384px (Google Nexus4) */
 @media all and (min-width: 24em) {
 
     img.product_pic {
@@ -123,7 +134,7 @@ img.aligncenter {display: block; margin-left: auto; margin-right: auto}
 
 }
 
-/* Breakpoint: 800px */
+/* Mobile First Breakpoint: 800px */
 @media all and (min-width: 50em) {
 
     img.product_pic {

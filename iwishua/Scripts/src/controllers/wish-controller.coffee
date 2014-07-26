@@ -29,7 +29,7 @@ angular.module('iwishua')
         ['vert', 'vert', 'vert', 'vert', 'vert']
       ]
 
-      perPage = if matchmedia.isPhone() then config.pageSize else Math.floor(config.pageSize * 1.5)
+      perPage = -> if matchmedia.isPhone() then config.pageSize else Math.floor(config.pageSize * 1.5)
       skip = Math.max(0, parseInt($localStorage.skip ? 0, 10))
 
       isBusy: true
@@ -63,8 +63,8 @@ angular.module('iwishua')
       # @parm $event
       #
       navLeft: ($event) ->
-        skip += perPage
-        skip = Math.min(datacontext.maxCount-perPage, skip)
+        skip += perPage()
+        skip = Math.min(datacontext.maxCount-perPage(), skip)
         $localStorage.skip = skip
         @fetchData()
 
@@ -74,7 +74,7 @@ angular.module('iwishua')
       # @parm $event
       #
       navRight: ($event) ->
-        skip -= perPage
+        skip -= perPage()
         skip = Math.max(0, skip)
         $localStorage.skip = skip
         @fetchData()
@@ -104,13 +104,14 @@ angular.module('iwishua')
       #
       display: (data) =>
 
+        console.log 'Skip '+skip+'/'+data.length
         #
         # Parse the data for display
         #
-        if skip+perPage > data.length
-          @products = shuffle(data.slice(-perPage))
+        if skip+perPage() > data.length
+          @products = shuffle(data.slice(-perPage()))
         else
-          @products = shuffle(data.slice(skip, skip+perPage))
+          @products = shuffle(data.slice(skip, skip+perPage()))
 
         for attrs in @products
 

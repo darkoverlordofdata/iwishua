@@ -12,18 +12,6 @@ Wish View
          ng-swipe-right="wish.navRight($event)">
 
         <!-- desktop nav controls -->
-        <div ng-hide="wish.isPhone">
-
-            <a ng-click="wish.navRight($event)"
-               class="left carousel-control" role="button">
-                <span class="glyphicon glyphicon-chevron-left"></span></a>
-
-            <a ng-click="wish.navLeft($event)"
-               class="right carousel-control" role="button">
-                <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-        </div>
-
         <div masonry>
             <div ng-repeat="product in wish.products | filter:wish.filter"
                  ng-click="wish.details('{{ product.id }}')"
@@ -36,6 +24,19 @@ Wish View
 
             </div>
         </div>
+
+        <div ng-hide="wish.isPhone">
+
+            <a ng-click="wish.navRight($event)"
+               class="left carousel-control" role="button">
+                <span class="glyphicon glyphicon-chevron-left"></span></a>
+
+            <a ng-click="wish.navLeft($event)"
+               class="right carousel-control" role="button">
+                <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+        </div>
+
 
     </div>
 </div>

@@ -17,7 +17,7 @@
 #
 angular.module('iwishua')
 .controller 'HiddenController',
-  ($scope, $window, $location, $route, $localStorage, logger, datacontext, config, cache, usSpinnerService) ->
+  ($scope, $window, $anchorScroll, $location, $route, $localStorage, logger, datacontext, config, cache, usSpinnerService) ->
 
     new class HiddenController
 
@@ -29,7 +29,6 @@ angular.module('iwishua')
         cache.importEntities()
         @products = cache.getDeleted()
         @config = config
-
       #
       # restore - Undelete the product
       #
