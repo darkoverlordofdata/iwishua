@@ -25,6 +25,7 @@ angular.module('iwishua', [
   'ngRoute'
   'ngStorage'
   'ngFacebook'
+#  'ngBootbox'
   'angularSpinner'
   'matchmedia-ng'
   'wu.masonry'
@@ -85,12 +86,6 @@ angular.module('iwishua', [
     js.async = true
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{facebook_app_id}"
     ref.parentNode.insertBefore js, ref
-#
-#  # ----------------------------
-#  # supposed to help swipe gestures... (y/n)?
-#  # ----------------------------
-#  if document.addEventListener
-#    document.addEventListener 'touchmove', (e) ->
-#      e.preventDefault()
-#
+
+
   $log.log 'iwishua application boot...'

@@ -12,16 +12,12 @@ Hidden View
                     <div class="panel-body">
                         <button ng-click="options.first()" class="btn btn-primary btn-sm">Go</button>
                     </div>
-                </div>
 
-                <div class="panel panel-default">
                     <div class="panel-heading">Clear data cache</div>
                     <div class="panel-body">
                         <button ng-click="options.clearCache()" class="btn btn-default btn-sm">Clear</button>
                     </div>
-                </div>
 
-                <div class="panel panel-default">
                     <div class="panel-heading">Clear configuration and cache</div>
                     <div class="panel-body">
                         <button ng-click="options.reset()" class="btn btn-default btn-sm">Reset</button>
@@ -57,5 +53,25 @@ Hidden View
                 </div>
             </div>
         </tab>
+
+        <tab heading="Theme">
+            <div class="tab-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Select Theme</div>
+                    <div class="panel-body">
+                        <select class="form-control" ng-model="options.theme" ng-options="theme for theme in options.themes"></select>
+
+                        <button ng-click="options.saveTheme()" class="btn btn-primary btn-sm">Set Theme</button>
+
+                    </div>
+                </div>
+            </div>
+        </tab>
+
+
     </tabset>
+
+    <button type="button" class="btn btn-default" ng-click="options.cancel()">Cancel</button>
+
 </div>
+

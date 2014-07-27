@@ -15,13 +15,14 @@
 #
 angular.module('iwishua')
 .factory 'config',
-  ($q, $localStorage, breeze) ->
+  ($q, $localStorage, $log, breeze) ->
 
     new class Config
 
       appUrl = 'https://iwishuadata.azure-mobile.net/'
 
       appTitle            : 'iwishua'
+      theme               : "//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css"
       serviceType         : 'zumo'
       serviceName         : appUrl + 'tables/'
       serverTitle         : 'Microsoft Azure'
@@ -36,24 +37,58 @@ angular.module('iwishua')
                           #Logger.SUCCESS      : 8                   #   toastr+log success
                           #Logger.LOG          : 16                  #   console log
 
+      theme               : 'slate'
+      themeTemplate       : "//netdna.bootstrapcdn.com/bootswatch/3.1.1/__theme__/bootstrap.min.css"
+      themeUrl            : "//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css"
+      themeNames: [ # valid bootswatch theme names
+        'amelia'
+        'cerulean'
+        'cosmo'
+        'cyborg'
+        'darkly'
+        'flatly'
+        'journal'
+        'lumen'
+        'readable'
+        'simplex'
+        'slate'
+        'spacelab'
+        'superhero'
+        'united'
+        'yeti'
+        ]
+
+
+      sync = (config) ->
+        if $localStorage.config?
+          for key, value of $localStorage.config
+            config[key] = value
+        else
+          $localStorage.config = {}
+          for key, value of config
+            $localStorage.config[key] = value
+
+
       constructor: ->
+
+        $log.log "Config initialized"
 
         adapter = breeze.config.initializeAdapterInstance(@interfaceName, @adapterName, true)
         adapter.mobileServicesInfo = url: appUrl
         adapter.Q = $q
 
-        # todo: Recalculate @pageSize for device form factor
-
+        sync @
         @chunkSize = @pageSize * 2
-
-        if $localStorage.config?
-          for key, value of $localStorage.config
-            @[key] = value
-        else
-          $localStorage.config = {}
-          for key, value of @
-            $localStorage.config[key] = value
+        @setTheme @theme
 
 
+      sync: =>
+        sync @
+
+      setTheme: (theme) =>
+        @theme = theme
+        @themeUrl = @themeTemplate.replace('__theme__', @theme)
+        $('#theme').attr 'href', @themeUrl
+        return
 
 
