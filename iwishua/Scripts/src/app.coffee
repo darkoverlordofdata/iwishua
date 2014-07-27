@@ -53,6 +53,9 @@ angular.module('iwishua', [
   .when '/hidden',        # list hidden items
     templateUrl:  'Content/partials/hidden.html'
 
+  .when '/options',        # list hidden items
+    templateUrl:  'Content/partials/options.html'
+
   .when '/about',         # FB: Terms of Service URL
     templateUrl:  'Content/partials/about.html'
 
@@ -82,12 +85,12 @@ angular.module('iwishua', [
     js.async = true
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{facebook_app_id}"
     ref.parentNode.insertBefore js, ref
-
-  # ----------------------------
-  # supposed to help swipe gestures... (y/n)?
-  # ----------------------------
-  if document.addEventListener
-    document.addEventListener 'touchmove', (e) ->
-      e.preventDefault()
-
+#
+#  # ----------------------------
+#  # supposed to help swipe gestures... (y/n)?
+#  # ----------------------------
+#  if document.addEventListener
+#    document.addEventListener 'touchmove', (e) ->
+#      e.preventDefault()
+#
   $log.log 'iwishua application boot...'

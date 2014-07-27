@@ -47,14 +47,6 @@ angular.module('iwishua')
         @spinner true
 
       #
-      # reset - Clear the cache
-      #
-      reset: =>
-
-        $localStorage.$reset()
-        $window.location.replace($window.location.origin+$window.location.pathname)
-
-      #
       # spinner - Start/Stop the spinner
       #
       # @parm start - true/false

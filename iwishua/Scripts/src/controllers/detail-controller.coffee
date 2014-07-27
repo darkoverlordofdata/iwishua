@@ -17,7 +17,7 @@
 #
 angular.module('iwishua')
 .controller 'DetailController',
-  (logger, $scope, $modalInstance, productData, datacontext) ->
+  (logger, $scope, $modalInstance, $route, productData, datacontext) ->
 
     #
     #   modal popup controller
@@ -42,8 +42,9 @@ angular.module('iwishua')
 
       delete: () =>
         datacontext.deleteProduct productData
-        productData.isPublished = false
         $modalInstance.close()
+        $route.reload()
+
 
       wish: () ->
         $modalInstance.close()

@@ -15,7 +15,7 @@
 #
 angular.module('iwishua')
 .factory 'config',
-  ($q, breeze) ->
+  ($q, $localStorage, breeze) ->
 
     new class Config
 
@@ -44,8 +44,16 @@ angular.module('iwishua')
 
         # todo: Recalculate @pageSize for device form factor
 
-#        @pageSize = if matchmedia.isPhone() then 5 else 10
         @chunkSize = @pageSize * 2
+
+        if $localStorage.config?
+          for key, value of $localStorage.config
+            @[key] = value
+        else
+          $localStorage.config = {}
+          for key, value of @
+            $localStorage.config[key] = value
+
 
 
 

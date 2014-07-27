@@ -1,0 +1,61 @@
+<!--
+Hidden View
+-->
+<div class="container" ng-controller="OptionsController as options">
+
+    <tabset>
+
+        <tab heading="Status">
+            <div class="tab-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Go to first record</div>
+                    <div class="panel-body">
+                        <button ng-click="options.first()" class="btn btn-primary btn-sm">Go</button>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Clear data cache</div>
+                    <div class="panel-body">
+                        <button ng-click="options.clearCache()" class="btn btn-default btn-sm">Clear</button>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Clear configuration and cache</div>
+                    <div class="panel-body">
+                        <button ng-click="options.reset()" class="btn btn-default btn-sm">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </tab>
+
+        <tab heading="Logging">
+            <div class="tab-content">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Logging options</div>
+                    <div class="panel-body">
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="options.logThreshold.ERROR">Error</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="options.logThreshold.INFO">Info</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="options.logThreshold.WARNING">Warning</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="options.logThreshold.SUCCESS">Success</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" ng-model="options.logThreshold.LOG">Log</label>
+                        </div>
+
+                        <button ng-click="options.update()" class="btn btn-primary btn-sm">Save</button>
+
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>

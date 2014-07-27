@@ -1,30 +1,30 @@
 <!--
 Hidden View
 -->
-<div id="hidden-content" class="overthrow"
-     ng-controller="HiddenController as hidden">
-    <div  >
-    <ul class="list-group">
-        <div ng-repeat="product in hidden.products">
-            <li class="list-group-item">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <img class="product_pic img-rounded"
-                            ng-src="{{ product.productImageUrl }}"
-                            alt="{{ product.productTitle }}" />
+<div class="container overthrow" ng-controller="HiddenController as hidden">
+    <div class="panel panel-default">
+        <div class="panel-heading">Deleted Items</div>
+        <ul class="list-group">
+            <div ng-repeat="product in hidden.products">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <img class="product_pic img-rounded"
+                                ng-src="{{ product.productImageUrl }}"
+                                alt="{{ product.productTitle }}" />
+                        </div>
+                        <div class="col-xs-6">
+                            {{ product.productName }}
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button"
+                                    ng-click="hidden.restore(product)"
+                                    class="btn btn-success pull-right">Restore</button>
+                        </div>
                     </div>
-                    <div class="col-xs-6">
-                        {{ product.productName }}
-                    </div>
-                    <div class="col-xs-3">
-                        <button type="button"
-                                ng-click="hidden.restore(product)"
-                                class="btn btn-success pull-right">Restore</button>
-                    </div>
-                </div>
-            </li>
-        </div>
-    </ul>
+                </li>
+            </div>
+        </ul>
     </div>
     <span us-spinner="{radius: 30, width: 8, length: 16}" spinner-key="spinner-restore"></span>
 
