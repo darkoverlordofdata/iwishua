@@ -1,6 +1,7 @@
 # 
 #   Scripts to load:
 #
+~/Scripts/src/prologue.js
 ~/Scripts/src/app.js
 ~/Scripts/src/config.js
 ~/Scripts/src/lib/logger.js

@@ -19,6 +19,8 @@ angular.module('iwishua')
 .controller 'OptionsController',
   ($scope, $window, $location, $route, $localStorage, $timeout, logger, config) ->
 
+    Logger = Object.getClass(logger)
+
     new class OptionsController
 
       logThreshold: null
@@ -31,12 +33,13 @@ angular.module('iwishua')
         @themes = config.themeNames
         @theme = config.theme
 
+
         @logThreshold =
-          ERROR:    (config.logThreshold & 1) is 1
-          INFO:     (config.logThreshold & 2) is 2
-          WARNING:  (config.logThreshold & 4) is 4
-          SUCCESS:  (config.logThreshold & 8) is 8
-          LOG:      (config.logThreshold & 16) is 16
+          ERROR:    (config.logThreshold & Logger.ERROR)    is Logger.ERROR
+          INFO:     (config.logThreshold & Logger.INFO)     is Logger.INFO
+          WARNING:  (config.logThreshold & Logger.WARNING)  is Logger.WARNING
+          SUCCESS:  (config.logThreshold & Logger.SUCCESS)  is Logger.SUCCESS
+          LOG:      (config.logThreshold & Logger.LOG)      is Logger.LOG
 
 
       #
@@ -79,7 +82,6 @@ angular.module('iwishua')
       saveTheme: =>
         config.setTheme @theme
         $localStorage.config = config
-        $location.path('/')
         return
 
       cancel: =>
@@ -92,24 +94,29 @@ angular.module('iwishua')
       update: =>
 
         if @logThreshold.ERROR
-          config.logThreshold |= 1
-        else config.logThreshold &= ~1
+          config.logThreshold |= Logger.ERROR
+        else
+          config.logThreshold &= ~Logger.ERROR
 
         if @logThreshold.INFO
-          config.logThreshold |= 2
-        else config.logThreshold &= ~2
+          config.logThreshold |= Logger.INFO
+        else
+          config.logThreshold &= ~Logger.INFO
 
         if @logThreshold.WARNING
-          config.logThreshold |= 4
-        else config.logThreshold &= ~4
+          config.logThreshold |= Logger.WARNING
+        else
+          config.logThreshold &= ~Logger.WARNING
 
         if @logThreshold.SUCCESS
-          config.logThreshold |= 8
-        else config.logThreshold &= ~8
+          config.logThreshold |= Logger.SUCCESS
+        else
+          config.logThreshold &= ~Logger.SUCCESS
 
         if @logThreshold.LOG
-          config.logThreshold |= 16
-        else config.logThreshold &= ~16
+          config.logThreshold |= Logger.LOG
+        else
+          config.logThreshold &= ~Logger.LOG
 
         $localStorage.config = config
         $location.path('/')

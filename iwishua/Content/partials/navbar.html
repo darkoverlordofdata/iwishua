@@ -1,6 +1,6 @@
 <!-- Menu -->
-<nav ng-controller="NavbarController as hdr" class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
+<nav ng-controller="NavbarController as nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div ng-controller="FBController as fb" class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -9,17 +9,20 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="#" class="logo navbar-brand">iwishua.com</a>
-            <p ng-controller="FBController as fb" id="fb-name" class="navbar-text label label-default">{{fb.username}}</p>
+            <p ng-click="fb.login()"
+               id="fb-name"
+               class="navbar-text label label-default">{{fb.username}}</p>
 
         </div>
         <div class="collapse navbar-collapse" fix-collapse="true">
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div></li>-->
-                <li ng-class="{active: hdr.active('/hidden')}"><a href="#hidden">See Hidden Gifts</a></li>
-                <li ng-class="{active: hdr.active('/list')}"><a href="#list">See Wish List</a></li>
+                <li ng-class="{active: nav.active('/hidden')}"><a href="#hidden">See Hidden Gifts</a></li>
+                <li ng-class="{active: nav.active('/list')}"><a href="#list">See Wish List</a></li>
                 <li class="divider"></li>
-                <li ng-class="{active: hdr.active('/options')}"><a href="#options">Options</a>
-                <li ng-class="{active: hdr.active('/logout')}"><a href="#logout">Logout</a>
+                <li ng-class="{show: fb.admin, hidden: !fb.admin, active: nav.active('/options')}"><a href="#options">Options</a>
+                <li ng-click="fb.login()"  ng-class="{show: !fb.connected, hidden: fb.connected}"><a href="#">Login</a>
+                <li ng-click="fb.logout()" ng-class="{show: fb.connected, hidden: !fb.connected}"><a href="#">Logout</a>
                 </li>
             </ul>
         </div>

@@ -11,7 +11,7 @@
 #|
 #+--------------------------------------------------------------------+
 #
-# configuration values for the iwishua application
+# Configuration values for the iwishua application
 #
 angular.module('iwishua')
 .factory 'config',
@@ -30,12 +30,13 @@ angular.module('iwishua')
       chunkSize           : 10
       interfaceName       : 'dataService'
       adapterName         : 'azure-mobile-services'
-      logThreshold        : 1 | 4 | 8 | 16
-                          #Logger.ERROR        : 1                   #   toastr+log errors
-                          #Logger.INFO         : 2                   #   toastr+log info messages
-                          #Logger.WARNING      : 4                   #   toastr+log warnings
-                          #Logger.SUCCESS      : 8                   #   toastr+log success
-                          #Logger.LOG          : 16                  #   console log
+      logThreshold        : 1 | 4 | 8 | 16            #   Defaults
+                                                      #   --------
+                          #Logger.ERROR        : 1    #   ON
+                          #Logger.INFO         : 2    #   OFF
+                          #Logger.WARNING      : 4    #   ON
+                          #Logger.SUCCESS      : 8    #   ON
+                          #Logger.LOG          : 16   #   ON
 
       theme               : 'slate'
       themeTemplate       : "//netdna.bootstrapcdn.com/bootswatch/3.1.1/__theme__/bootstrap.min.css"
@@ -51,22 +52,12 @@ angular.module('iwishua')
         'lumen'
         'readable'
         'simplex'
-        'slate'
+        'slate'       # Default
         'spacelab'
         'superhero'
         'united'
         'yeti'
         ]
-
-
-      sync = (config) ->
-        if $localStorage.config?
-          for key, value of $localStorage.config
-            config[key] = value
-        else
-          $localStorage.config = {}
-          for key, value of config
-            $localStorage.config[key] = value
 
 
       constructor: ->
@@ -82,13 +73,31 @@ angular.module('iwishua')
         @setTheme @theme
 
 
-      sync: =>
-        sync @
-
+      #
+      # setTheme - Set the gui theme
+      #
+      # @param  theme
+      #
       setTheme: (theme) =>
         @theme = theme
         @themeUrl = @themeTemplate.replace('__theme__', @theme)
         $('#theme').attr 'href', @themeUrl
         return
+
+      #
+      # Sync - sync the config object with web storage
+      #
+      # @param  config
+      #
+      sync = (config) ->
+        if $localStorage.config?
+          for key, value of $localStorage.config
+            config[key] = value
+        else
+          $localStorage.config = {}
+          for key, value of config
+            $localStorage.config[key] = value
+
+
 
 

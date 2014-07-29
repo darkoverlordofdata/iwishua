@@ -21,10 +21,61 @@ angular.module('iwishua')
 
     new class FBController
 
+      connected: false # true when logged in to facebook
+      admin: false # true if facebook admin logged on
+
       constructor: ->
         logger.log "FB Controller initialized"
 
-        $facebook.api("/me").then (response) =>
+        $facebook.getLoginStatus().then (response) =>
 
-          @username = response.first_name
+          if response.status is 'connected'
+
+            $facebook.api("/me").then (response) =>
+              @username = response.first_name
+              @connected = true
+              @checkAuth response
+
+          else
+              @username = 'Login'
+
+
+      #
+      # login - Logon to Facebook
+      #
+      #
+      login: =>
+        return if @connected
+        $facebook.login().then (response) =>
+
+          if response.status is 'connected'
+            $facebook.api("/me").then (response) =>
+              @username = response.first_name
+              @connected = true
+              @checkAuth response
+
+
+      #
+      # logout - Logout from Facebook
+      #
+      #
+      logout: =>
+        return unless @connected
+        $facebook.logout().then (response) =>
+
+          @connected = if response.status is 'connected' then true else false
+          if not @connected
+            @username = 'Login'
+            @admin = false
+
+
+      checkAuth: (response) =>
+        admins = $("meta[property='fb:admins']")
+        admins = [admins] if not Array.isArray(admins)
+
+        for admin in admins
+          if response.id is admin.content
+            @admin = true
+            logger.warning 'Admin access: '+response.first_name
+
 

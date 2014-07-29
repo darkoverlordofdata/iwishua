@@ -15,8 +15,6 @@
 #
 # iwishua app
 #
-facebook_app_id = '1495109164043412'
-
 # ----------------------------
 # iwishua dependencies
 # ----------------------------
@@ -37,7 +35,9 @@ angular.module('iwishua', [
 # ----------------------------
 .config ($routeProvider, $facebookProvider) ->
 
-  $facebookProvider.setAppId "#{facebook_app_id}"
+  appId = $("meta[property='fb:app_id']").attr('content')
+
+  $facebookProvider.setAppId appId
   $facebookProvider.setPermissions "publish_stream"
   $facebookProvider.setCustomInit
     xfbml      : true
@@ -74,6 +74,7 @@ angular.module('iwishua', [
 # ----------------------------
 .run ($log) ->
 
+  appId = $("meta[property='fb:app_id']").attr('content')
   # ----------------------------
   # Start loading the Facebook JS SDK (Asynchronous)
   # ----------------------------
@@ -84,7 +85,7 @@ angular.module('iwishua', [
     js = d.createElement("script")
     js.id = id
     js.async = true
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{facebook_app_id}"
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{appId}"
     ref.parentNode.insertBefore js, ref
 
 

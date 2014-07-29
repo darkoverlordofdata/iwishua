@@ -59,10 +59,14 @@ Hidden View
                 <div class="panel panel-default">
                     <div class="panel-heading">Select Theme</div>
                     <div class="panel-body">
-                        <select class="form-control" ng-model="options.theme" ng-options="theme for theme in options.themes"></select>
-
-                        <button ng-click="options.saveTheme()" class="btn btn-primary btn-sm">Set Theme</button>
-
+                        <div class="input-group">
+                            <select class="form-control"
+                                    ng-model="options.theme"
+                                    ng-options="theme for theme in options.themes"></select>
+                            <span ng-click="options.saveTheme()" class="btn btn-primary input-group-addon">
+                                Select
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
