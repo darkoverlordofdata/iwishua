@@ -42,6 +42,7 @@ angular.module('iwishua', [
   $facebookProvider.setCustomInit
     xfbml      : true
     version    : 'v2.0'
+    cookie     : true
 
   $routeProvider
   #

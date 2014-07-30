@@ -39,8 +39,8 @@ angular.module('iwishua')
                           #Logger.LOG          : 16   #   ON
 
       theme               : 'slate'
-      themeTemplate       : "//netdna.bootstrapcdn.com/bootswatch/3.1.1/__theme__/bootstrap.min.css"
-      themeUrl            : "//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css"
+      themeTemplate       : "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/__theme__/bootstrap.min.css"
+      themeUrl            : "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/slate/bootstrap.min.css"
       themeNames: [ # valid bootswatch theme names
         'amelia'
         'cerulean'

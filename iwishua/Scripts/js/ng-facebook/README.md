@@ -4,9 +4,47 @@ Angular service to handle facebook
 
 Installation
 ------------
-1. Include the [*Facebook SDK for javascript*](https://developers.facebook.com/docs/reference/javascript/), **BUT DO NOT** initialize the sdk.
-1. Include `ngFacebook` in your application dependencies
+1. Download the package, you can download the [zip file](https://github.com/GoDisco/ngFacebook/archive/master.zip), or use bower: `bower install ng-facebook`
+1. Modify your application to include `ngFacebook` in your application dependencies
+1. Configure the ngFacebook module using the configuration steps outlined in the section titled "Configuration" below.
+1. Load the [*Facebook SDK for javascript*](https://developers.facebook.com/docs/reference/javascript/), **BUT DO NOT** call `FB.init` or set `window.fbAsyncInit`. These steps are automatically done by the ngFacebook module.
 
+Example:
+
+```javascript
+angular.module('<your-app>', ['ngFacebook'])
+
+.config( function( $facebookProvider ) {
+  $facebookProvider.setAppId('<your-facebook-app-id>');
+})
+
+.run( function( $rootScope ) {
+  // Cut and paste the "Load the SDK" code from the facebook javascript sdk page.
+  
+  // Load the facebook SDK asynchronously
+  (function(){
+     ...
+   }());
+})
+
+;
+
+var DemoCtrl = function ($scope, $facebook) {
+  ...
+  function refresh() {
+    $facebook.api("/me").then( 
+      function(response) {
+        $scope.welcomeMsg = "Welcome " + response.name;
+      },
+      function(err) {
+        $scope.welcomeMsg = "Please log in";
+      });
+  }
+};
+
+```
+
+For more details check out this [plunker which uses ngFacebook](http://plnkr.co/edit/HcYBFKbqFcgQGhyCGQMw?p=preview).
 
 Configuration
 -----
@@ -17,23 +55,23 @@ You *must* configure your `facebook application ID` in your app, for example:
     });
 
 ### Additional configurations
-You can also configure the next properties.
-
-Use `set` and `get`. For example `$facebookProvider.setAppId(11111)`
+You can also configure the following properties. Both `set` and `get` methods are available for each property.
 
 
-1. `permissions(<string>)` for permissions which required by your app.
+1. `permissions(<string>)` - permissions required by your app.
 
     Example:
 
         $facebookProvider.setPermissions("email,user_likes");
 
-1. `customInit(<object>)` custom initial p.
+1. `customInit(<object>)` - the parameters to pass to `FB.init()`. The 'appId' parameter is automatically specified using the value passed to '$facebookProvider.setAppId()', however the remaining parameters are configurable.
 
     Example to set:
 
         $facebookProvider.setCustomInit({
-          channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html'
+          channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html',
+          xfbml      : true,
+          version    : 'v2.0'
         });
 
 
@@ -80,6 +118,17 @@ License
 This project is released over [MIT license](http://opensource.org/licenses/MIT "MIT License")
 
 
+Sponsors
+------
+Thanks to our sponsors for this project:
+
+1. [GoDisco](http://www.godisco.net)
+1. [JetBrains](http://www.jetbrains.com/) - for providing the great IDE [PhpStorm](http://www.jetbrains.com/phpstorm/)
+
+
 Authors
 -------
-[AlmogBaku](http://www.AlmogBaku.com "AlmogBaku") - by [GoDisco](http://www.godisco.net)
+
+1. [Almog Baku](http://www.AlmogBaku.com "AlmogBaku") - by [GoDisco](http://www.godisco.net)
+1. [Amir Valiani](https://github.com/avaliani "Avaliani")
+1. [Tal Gleichger](http://gleichger.com/ "talgleichger") - by [GoDisco](http://www.godisco.net)

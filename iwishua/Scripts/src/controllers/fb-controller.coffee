@@ -21,8 +21,8 @@ angular.module('iwishua')
 
     new class FBController
 
-      connected: false # true when logged in to facebook
-      admin: false # true if facebook admin logged on
+      connected   : false # true when logged in to facebook
+      admin       : false # true if facebook admin logged on
 
       constructor: ->
         logger.log "FB Controller initialized"
@@ -69,9 +69,14 @@ angular.module('iwishua')
             @admin = false
 
 
+      #
+      # checkAuth - Check if a facebook admin
+      #
+      # @param response
+      #
       checkAuth: (response) =>
         admins = $("meta[property='fb:admins']")
-        admins = [admins] if not Array.isArray(admins)
+#        admins = [admins] unless Array.isArray(admins)
 
         for admin in admins
           if response.id is admin.content
