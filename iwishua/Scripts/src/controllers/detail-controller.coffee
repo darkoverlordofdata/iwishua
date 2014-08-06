@@ -17,7 +17,7 @@
 #
 angular.module('iwishua')
 .controller 'DetailController',
-  (logger, $scope, $modalInstance, $route, productData, datacontext) ->
+  (logger, $scope, $modalInstance, $route, productData) ->
 
     fields = [
       'id'
@@ -36,11 +36,6 @@ angular.module('iwishua')
     #
     new class DetailController
 
-      OK    : 1
-      CANCEL: 2
-      DELETE: 3
-      WISH  : 4
-      
       constructor: () ->
         logger.log "DetailController initialized"
 
@@ -50,16 +45,14 @@ angular.module('iwishua')
 
 
       ok: () =>
-        $modalInstance.close @OK
+        $modalInstance.close 'OK'
 
       cancel: () =>
         $modalInstance.dismiss 'cancel'
 
       delete: () =>
-        datacontext.deleteProduct productData
-        $route.reload()
-        $modalInstance.close @DELETE
+        $modalInstance.close 'DELETE'
 
       wish: () ->
-        $modalInstance.close @WISH
+        $modalInstance.close 'WISH'
 

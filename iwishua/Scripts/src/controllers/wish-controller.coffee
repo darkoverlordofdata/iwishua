@@ -17,7 +17,7 @@
 #
 angular.module('iwishua')
 .controller 'WishController',
-  ($scope, $localStorage, $modal, matchmedia, logger, datacontext, shuffle, config, cache, usSpinnerService) ->
+  ($scope, $route, $location, $localStorage, $modal, matchmedia, logger, datacontext, shuffle, config, cache, usSpinnerService) ->
 
 
     new class WishController
@@ -140,7 +140,7 @@ angular.module('iwishua')
 
 
         #
-        # Generate class and orientation
+        # Layout the images
         #
         if config.layout is Config.LAYOUT_TILED
           c = 0
@@ -185,15 +185,25 @@ angular.module('iwishua')
 
         for product in @products
           if id is product.id
-            $modal.open(
+            modal = $modal.open
               size          : 'sm'
               templateUrl   : 'Content/partials/wish-details.html'
               controller    : 'DetailController'
               resolve:
                 productData: () ->
                   return product
-            ).result.then (result) ->
-              logger.success 'Entered '+result
+            
+            modal.result.then (result) ->
+              switch result
+              
+                when 'DELETE'
+                  datacontext.deleteProduct product
+                  $route.reload()
+                
+                when 'WISH'
+                  console.log 'wish'
+                  $location.path('/friends')                  
+                
               
             return
         return
