@@ -19,17 +19,22 @@ angular.module('iwishua')
 
     new class Config
 
+      @LAYOUT_LIST  = 0
+      @LAYOUT_TILED = 1
+      
       appUrl = 'https://iwishuadata.azure-mobile.net/'
 
-      appTitle            : 'iwishua'
-      theme               : "//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css"
-      serviceType         : 'zumo'
-      serviceName         : appUrl + 'tables/'
-      serverTitle         : 'Microsoft Azure'
-      pageSize            : 5
-      chunkSize           : 10
-      interfaceName       : 'dataService'
-      adapterName         : 'azure-mobile-services'
+      appTitle            : 'iwishua'                 #
+      serviceType         : 'zumo'                    #
+      serviceName         : appUrl + 'tables/'        #
+      serverTitle         : 'Microsoft Azure'         #
+      pageSize            : 5                         # number of items per page
+      chunkSize           : 10                        #  
+      scrub               : true                      # scrub item description
+      layout              : @LAYOUT_TILED             # item layout style
+      layoutNames         : ['LAYOUT_LIST', 'LAYOUT_ TILED']
+      interfaceName       : 'dataService'             #
+      adapterName         : 'azure-mobile-services'   #
       logThreshold        : 1 | 4 | 8 | 16            #   Defaults
                                                       #   --------
                           #Logger.ERROR        : 1    #   ON
@@ -38,6 +43,7 @@ angular.module('iwishua')
                           #Logger.SUCCESS      : 8    #   ON
                           #Logger.LOG          : 16   #   ON
 
+#      theme               : "//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css"
       theme               : 'slate'
       themeTemplate       : "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/__theme__/bootstrap.min.css"
       themeUrl            : "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/slate/bootstrap.min.css"
@@ -84,6 +90,9 @@ angular.module('iwishua')
         $('#theme').attr 'href', @themeUrl
         return
 
+      setLayout: (layout) =>
+        @layout = layout
+        
       #
       # Sync - sync the config object with web storage
       #

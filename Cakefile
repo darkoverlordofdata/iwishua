@@ -18,7 +18,7 @@ util = require 'util'
 #
 # Build Source
 #
-task 'build:src', 'Build the coffee app', ->
+task 'build', 'Build the coffee app', ->
 
   start = new Date().getTime()
 

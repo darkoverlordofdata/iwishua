@@ -23,7 +23,6 @@ angular.module('iwishua', [
   'ngRoute'
   'ngStorage'
   'ngFacebook'
-#  'ngBootbox'
   'angularSpinner'
   'matchmedia-ng'
   'wu.masonry'

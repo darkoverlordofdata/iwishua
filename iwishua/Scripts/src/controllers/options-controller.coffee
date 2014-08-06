@@ -20,16 +20,21 @@ angular.module('iwishua')
   ($scope, $window, $location, $route, $localStorage, $timeout, logger, config) ->
 
     Logger = Object.getClass(logger)
+    Config = Object.getClass(config)
 
     new class OptionsController
 
-      logThreshold: null
-      themes: null
-      theme: ''
+      logThreshold    : null
+      themes          : null
+      theme           : ''
+      layouts         : null
+      layout          : ''
 
       constructor: ->
         logger.log "OptionsController initialized"
 
+        @layouts = config.layoutNames
+        @layout = @layouts[config.layout]
         @themes = config.themeNames
         @theme = config.theme
 
@@ -78,6 +83,14 @@ angular.module('iwishua')
         $location.path('/')
         return
 
+
+      saveLayout: =>
+        config.setLayout Config[@layout]
+        $localStorage.config = config
+        $timeout ->
+          $window.location.replace($window.location.origin+$window.location.pathname)
+        ,300
+        return
 
       saveTheme: =>
         config.setTheme @theme

@@ -19,8 +19,16 @@ angular.module('iwishua')
 .controller 'WishController',
   ($scope, $localStorage, $modal, matchmedia, logger, datacontext, shuffle, config, cache, usSpinnerService) ->
 
+
     new class WishController
 
+      Config        = Object.getClass(config)
+      skip          = Math.max(0, parseInt($localStorage.skip ? 0, 10))
+      perPage       = -> if matchmedia.isPhone() then config.pageSize else Math.floor(config.pageSize * 1.5)
+
+      isBusy        : true
+      spinnerName   : 'spinner-wish'
+      layout        : -> config.layoutNames[config.layout]
       patterns = [
         ['vert', 'horz', 'horz', 'vert', 'vert']
         ['vert', 'horz', 'vert', 'vert', 'horz']
@@ -29,11 +37,7 @@ angular.module('iwishua')
         ['vert', 'vert', 'vert', 'vert', 'vert']
       ]
 
-      perPage = -> if matchmedia.isPhone() then config.pageSize else Math.floor(config.pageSize * 1.5)
-      skip = Math.max(0, parseInt($localStorage.skip ? 0, 10))
-
-      isBusy: true
-      spinnerName: 'spinner-wish'
+        
 
       constructor: ->
 
@@ -121,34 +125,42 @@ angular.module('iwishua')
 
         for attrs in @products
 
-          title = attrs.productTitle
-          # strip off wrapping quotes
-          if title[0...1] is '"' then title = title[1...-1]
-          words = title.replace(/[-,.©®™]/g, ' ').replace(/([a-z])([A-Z])/g, "$1 $2").split(/\s+/)
-          title = words.join(' ')
-          attrs.productTitle = title
-          name = ''
-          until name.length > 20 or words.length is 0
-            name = words.pop() + ' ' + name.substr(0, 1).toUpperCase() + name.substr(1)
-          attrs.productName = name
+          if config.scrub
+            title = attrs.productTitle
+            # strip off wrapping quotes
+            if title[0...1] is '"' then title = title[1...-1]
+            words = title.replace(/[-,.©®™]/g, ' ').replace(/([a-z])([A-Z])/g, "$1 $2").split(/\s+/)
+            title = words.join(' ')
+            attrs.productTitle = title
+            name = ''
+            until name.length > 20 or words.length is 0
+              name = words.pop() + ' ' + name.substr(0, 1).toUpperCase() + name.substr(1)
+            attrs.productName = name
+          else attrs.productName = attrs.productTitle
 
 
         #
         # Generate class and orientation
         #
-        c = 0
-        className = patterns[Math.floor((Math.random() * patterns.length))]
-        logger.info 'Pattern: ' + (s[0] for s in className)
-        for attrs in @products
+        if config.layout is Config.LAYOUT_TILED
+          c = 0
+          className = patterns[Math.floor((Math.random() * patterns.length))]
+          logger.info 'Pattern: ' + (s[0] for s in className)
+          for attrs in @products
 
-          attrs.className = className[c % 5]
-          c += 1
-          if attrs.className is 'horz'
-            if (Math.floor(Math.random() * new Date().getTime())) & 1
-              attrs.aligned = 'alignleft'
-            else
-              attrs.aligned = 'alignright'
+            attrs.className = className[c % 5]
+            c += 1
+            if attrs.className is 'horz'
+              if (Math.floor(Math.random() * new Date().getTime())) & 1
+                attrs.aligned = 'alignleft'
+              else
+                attrs.aligned = 'alignright'
 
+        else
+          attrs.className = 'layout_list'
+          attrs.aligned = 'alignleft'
+        
+          
         #
         # Stop the spinner
         #
@@ -173,15 +185,18 @@ angular.module('iwishua')
 
         for product in @products
           if id is product.id
-            $modal.open
+            $modal.open(
               size          : 'sm'
               templateUrl   : 'Content/partials/wish-details.html'
               controller    : 'DetailController'
               resolve:
                 productData: () ->
                   return product
-
+            ).result.then (result) ->
+              logger.success 'Entered '+result
+              
             return
+        return
 
       #
       # spinner - Start/Stop the spinner

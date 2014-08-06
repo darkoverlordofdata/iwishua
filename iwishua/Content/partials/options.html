@@ -54,9 +54,10 @@ Hidden View
             </div>
         </tab>
 
-        <tab heading="Theme">
+        <tab heading="Appearance">
             <div class="tab-content">
                 <div class="panel panel-default">
+                    
                     <div class="panel-heading">Select Theme</div>
                     <div class="panel-body">
                         <div class="input-group">
@@ -68,9 +69,22 @@ Hidden View
                             </span>
                         </div>
                     </div>
+                    
+                    <div class="panel-heading">Select Layout</div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <select class="form-control"
+                                    ng-model="options.layout"
+                                    ng-options="layout for layout in options.layouts"></select>
+                            <span ng-click="options.saveLayout()" class="btn btn-primary input-group-addon">
+                                Select
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </tab>
+
 
 
     </tabset>

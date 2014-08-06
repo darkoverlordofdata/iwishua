@@ -1,18 +1,18 @@
-# FIFTYTWOFIFTYTWO CONFIDENTIAL
+# FIVETWOFIVETWO CONFIDENTIAL
 ____________________________________
 
-Copyright (c) 2013 - 2014 FiftyTwoFiftyTwo, LLC
+Copyright (c) 2013 - 2014 FiveTwoFiveTwo, LLC
 All Rights Reserved.
 
 NOTICE:  All information contained herein is, and remains
-the property of FiftyTwoFiftyTwo, LLC and its suppliers,
+the property of FiveTwoFiveTwo, LLC and its suppliers,
 if any.  The intellectual and technical concepts contained
-herein are proprietary to FiftyTwoFiftyTwo, LLC
+herein are proprietary to FiveTwoFiveTwo, LLC
 and its suppliers and may be covered by U.S. and Foreign Patents,
 patents in process, and are protected by trade secret or copyright law.
 Dissemination of this information or reproduction of this material
 is strictly forbidden unless prior written permission is obtained
-from FiftyTwoFiftyTwo, LLC.
+from FiveTwoFiveTwo, LLC.
 
 The above copyright notice and this permission notice shall be
 included in all copies or substantial portions of the Software.
