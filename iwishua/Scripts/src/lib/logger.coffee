@@ -23,8 +23,8 @@ angular.module('iwishua')
 
     new class Logger
 
-      toastr.options.timeOut = 2000 # 2 second toast timeout
-      toastr.options.positionClass = 'toast-bottom-right'
+      toastr.options.timeOut = config.toastr.timeOut
+      toastr.options.positionClass = config.toastr.positionClass
 
       @ERROR        : 1                   #   log only errors
       @INFO         : 2                   #   log info messages

@@ -64,6 +64,11 @@ angular.module('iwishua')
         'united'
         'yeti'
         ]
+        
+      toastr:
+        timeOut           : 2000 # 2 second toast timeout
+        positionClass     : 'toast-bottom-right'
+        
 
 
       constructor: ->
@@ -102,6 +107,9 @@ angular.module('iwishua')
         if $localStorage.config?
           for key, value of $localStorage.config
             config[key] = value
+          for key, value of config
+            $localStorage.config[key] = value unless $localStorage.config[key]?
+            
         else
           $localStorage.config = {}
           for key, value of config

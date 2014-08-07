@@ -70,11 +70,6 @@ img.detail_pic {
     border-radius: 10px;
 }
 
-img.friend_pic {
-    height: 50px;
-    width: 50px;
-}
-
 img.user_pic {
     height: 28px;
     width: 28px;
@@ -82,6 +77,12 @@ img.user_pic {
 
 
 /* Mobile First base style - 320px (iPhone) */
+
+img.friend_pic {
+    height: 5.5em;
+    width: 5.5em;
+    border-radius: .5em;
+}
 
 img.product_pic {
     height: 5.5em;

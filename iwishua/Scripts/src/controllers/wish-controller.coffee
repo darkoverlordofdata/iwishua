@@ -17,7 +17,7 @@
 #
 angular.module('iwishua')
 .controller 'WishController',
-  ($scope, $route, $location, $localStorage, $modal, matchmedia, logger, datacontext, shuffle, config, cache, usSpinnerService) ->
+  ($scope, $route, $location, $localStorage, $modal, matchmedia, logger, datacontext, shuffle, config, cache, usSpinnerService, iwishua) ->
 
 
     new class WishController
@@ -187,7 +187,7 @@ angular.module('iwishua')
           if id is product.id
             modal = $modal.open
               size          : 'sm'
-              templateUrl   : 'Content/partials/wish-details.html'
+              templateUrl   : 'Content/views/wish-details.html'
               controller    : 'DetailController'
               resolve:
                 productData: () ->
@@ -201,7 +201,7 @@ angular.module('iwishua')
                   $route.reload()
                 
                 when 'WISH'
-                  console.log 'wish'
+                  iwishua.product = product
                   $location.path('/friends')                  
                 
               

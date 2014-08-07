@@ -7,6 +7,7 @@
 ~/Scripts/src/app.js
 ~/Scripts/src/config.js
 ~/Scripts/src/lib/logger.js
+~/Scripts/src/lib/iwishua.js
 ~/Scripts/src/lib/shuffle.js
 ~/Scripts/src/lib/capitalise.js
 ~/Scripts/src/lib/fix-collapse.js
@@ -14,6 +15,7 @@
 ~/Scripts/src/controllers/fb-controller.js
 ~/Scripts/src/controllers/detail-controller.js
 ~/Scripts/src/controllers/wish-controller.js
+~/Scripts/src/controllers/friends-controller.js
 ~/Scripts/src/controllers/hidden-controller.js
 ~/Scripts/src/controllers/options-controller.js
 ~/Scripts/src/models/entity-manager-factory.js

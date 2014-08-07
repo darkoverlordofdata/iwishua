@@ -28,6 +28,7 @@ angular.module('iwishua', [
   'wu.masonry'
   'ui.bootstrap'
   'breeze.angular'
+#  'infinite-scroll'
 ])
 # ----------------------------
 # Routes
@@ -49,22 +50,25 @@ angular.module('iwishua', [
   #
 
   .when '/',              # home
-    templateUrl:  'Content/partials/wish.html'
+    templateUrl:  'Content/views/wish.html'
 
   .when '/hidden',        # list hidden items
-    templateUrl:  'Content/partials/hidden.html'
+    templateUrl:  'Content/views/hidden.html'
+
+  .when '/friends',        # List facebook friends
+    templateUrl:  'Content/views/friends.html'
 
   .when '/options',        # list hidden items
-    templateUrl:  'Content/partials/options.html'
+    templateUrl:  'Content/views/options.html'
 
   .when '/about',         # FB: Terms of Service URL
-    templateUrl:  'Content/partials/about.html'
+    templateUrl:  'Content/views/about.html'
 
   .when '/privacy',       # FB: Privacy Policy URL
-    templateUrl:  'Content/partials/privacy.html'
+    templateUrl:  'Content/views/privacy.html'
 
   .when '/support',       # FB: User Support URL
-    templateUrl:  'Content/partials/about.html'
+    templateUrl:  'Content/views/about.html'
 
   .otherwise(redirectTo: '/')
 
