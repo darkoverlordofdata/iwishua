@@ -8,3 +8,4 @@ tmp
 iwishua/Scripts/js/app.js
 iwishua/Scripts/js/app.min.js
 /nbproject/private/
+test/appcredentials.coffee

@@ -1,0 +1,21 @@
+### Select test user:
+
+
+* [Norville Rogers]   (https://developers.facebook.com/checkpoint/test-user-login/100004364474728/)
+* [Fred Jones]  (https://developers.facebook.com/checkpoint/test-user-login/100004419764738/)
+* [Velma Dinkley]   (https://developers.facebook.com/checkpoint/test-user-login/100005310434727/)
+* [Vincent Van Ghoul]   (https://developers.facebook.com/checkpoint/test-user-login/100006222374780/)
+* [Daphne Blake]  (https://developers.facebook.com/checkpoint/test-user-login/100007185074708/)
+* [Luna Hex]  (https://developers.facebook.com/checkpoint/test-user-login/100004216364762/)
+* [Dusk Hex]  (https://developers.facebook.com/checkpoint/test-user-login/100004234124731/)
+* [Crush Hex]   (https://developers.facebook.com/checkpoint/test-user-login/100004407614724/)
+* [Flim Flam]   (https://developers.facebook.com/checkpoint/test-user-login/100006609854719/)
+* [Thorn Hex] (https://developers.facebook.com/checkpoint/test-user-login/100007775894721/)
+* [Janet Nettles]   (https://developers.facebook.com/checkpoint/test-user-login/100004463744729/)
+* [Bronson Stone]   (https://developers.facebook.com/checkpoint/test-user-login/100005589284728/)
+* [Ricky Owens]   (https://developers.facebook.com/checkpoint/test-user-login/100007255334737/)
+* [Angel Dynamite]  (https://developers.facebook.com/checkpoint/test-user-login/100006859994720/)
+* [Red Herring]   (https://developers.facebook.com/checkpoint/test-user-login/100004935644728/)
+* [Judy Reeves]   (https://developers.facebook.com/checkpoint/test-user-login/100004530704747/)
+* [Brad Chiles]   (https://developers.facebook.com/checkpoint/test-user-login/100005429954741/)
+* [Professor Pericles]  (https://developers.facebook.com/checkpoint/test-user-login/100006108074731/)
