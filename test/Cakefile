@@ -1,0 +1,61 @@
+#+--------------------------------------------------------------------+
+#| test/Cakefile
+#+--------------------------------------------------------------------+
+#| Copyright FiveTwoFiveTwo, LLC (c) 2014
+#+--------------------------------------------------------------------+
+#|
+#| This file is a part of iwishua
+#|
+#+--------------------------------------------------------------------+
+#
+# Facebook User Management
+#
+Q = require('q')
+require 'coffee-script/register'
+config = require('./test-user/config')
+FacebookTestUser = require('./test-user/facebook')
+
+facebook = new FacebookTestUser(config.app_id, config.app_secret)
+
+#
+# List Facebook Test Users
+#
+task 'list', 'list test users', ->
+  facebook.logon().then (token) ->
+    
+    facebook.getUsers(token)
+
+    .then (body) ->
+      console.log body.data
+
+    .catch (e) ->
+      console.log 'rejected '+e
+
+  
+#
+# Create the Facebook Test Uses
+#
+task 'create', 'create all test users', (options) ->
+
+  facebook.logon().then (token) ->
+      
+    funcs = (facebook.createUser(token, name, index) for name, index in config.users)
+    Q.allSettled(funcs)
+    
+    .then (results) ->  # now friend everyone
+                        
+      funcs = []
+      for mark in facebook.app_users
+        for time in facebook.app_users
+          if mark.id isnt time.id
+            funcs.push facebook.makeFriends(token, mark, time)
+            funcs.push facebook.makeFriends(token, time, mark)
+            
+      Q.allSettled(funcs).then ->
+        console.log "Ok"
+        
+      
+      
+      
+
+

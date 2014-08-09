@@ -11,7 +11,8 @@
 #|
 #+--------------------------------------------------------------------+
 #
-# Configuration values for the iwishua application
+# Iwishua Configuration values
+#
 #
 angular.module('iwishua')
 .factory 'config',
@@ -24,30 +25,124 @@ angular.module('iwishua')
       
       appUrl = 'https://iwishuadata.azure-mobile.net/'
 
-      appTitle            : 'iwishua'                 #
-      serviceType         : 'zumo'                    #
-      serviceName         : appUrl + 'tables/'        #
-      serverTitle         : 'Microsoft Azure'         #
-      pageSize            : 5                         # number of items per page
-      chunkSize           : 10                        #  
-      scrub               : true                      # scrub item description
-      layout              : @LAYOUT_TILED             # item layout style
-      layoutNames         : ['LAYOUT_LIST', 'LAYOUT_ TILED']
-      interfaceName       : 'dataService'             #
-      adapterName         : 'azure-mobile-services'   #
-      logThreshold        : 1 | 4 | 8 | 16            #   Defaults
-                                                      #   --------
-                          #Logger.ERROR        : 1    #   ON
-                          #Logger.INFO         : 2    #   OFF
-                          #Logger.WARNING      : 4    #   ON
-                          #Logger.SUCCESS      : 8    #   ON
-                          #Logger.LOG          : 16   #   ON
+      #|
+      #|--------------------------------------------------------------------------
+      #| Service Name
+      #|--------------------------------------------------------------------------
+      #|
+      #| Uri of the BreezeJS data source
+      #|
+      #|
+      serviceName: appUrl + 'tables/'        
+      #|
+      #|--------------------------------------------------------------------------
+      #| Interface Name
+      #|--------------------------------------------------------------------------
+      #|
+      #| BreezeJS connection interface
+      #|
+      #|
+      interfaceName: 'dataService'             
+      #|
+      #|--------------------------------------------------------------------------
+      #| Adapter Name
+      #|--------------------------------------------------------------------------
+      #|
+      #| Name of the BreezeJS data adapter
+      #|
+      #|
+      adapterName: 'azure-mobile-services'   
+      #|
+      #|--------------------------------------------------------------------------
+      #| Page Size
+      #|--------------------------------------------------------------------------
+      #|
+      #| Number of items to show per page
+      #|
+      #|
+      pageSize: 5                         
+      chunkSize: 10                       
+      #|
+      #|--------------------------------------------------------------------------
+      #| Scrub
+      #|--------------------------------------------------------------------------
+      #|
+      #| Clean up the description (true/false)
+      #|
+      #|
+      scrub: true                      
+      #|
+      #|--------------------------------------------------------------------------
+      #| Layout
+      #|--------------------------------------------------------------------------
+      #|
+      #| Page layout style
+      #|
+      #| @LAYOUT_LIST  = 0
+      #| @LAYOUT_TILED = 1
+      #|
+      layout: @LAYOUT_TILED
+      #|
+      #|--------------------------------------------------------------------------
+      #| Layout Names
+      #|--------------------------------------------------------------------------
+      #|
+      #| List of possible layout styles
+      #|
+      #|
+      layoutNames: ['LAYOUT_LIST', 'LAYOUT_ TILED']
+      #|
+      #|--------------------------------------------------------------------------
+      #| Log Threshold
+      #|--------------------------------------------------------------------------
+      #|
+      #| Uri of the BreezeJS data source
+      #|
+      #|
+      logThreshold: 1 | 4 | 8 | 16  #   Defaults
+      #|                            #   --------
+      #| Logger.ERROR        : 1    #   ON
+      #| Logger.INFO         : 2    #   OFF
+      #| Logger.WARNING      : 4    #   ON
+      #| Logger.SUCCESS      : 8    #   ON
+      #| Logger.LOG          : 16   #   ON
 
-#      theme               : "//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css"
-      theme               : 'slate'
-      themeTemplate       : "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/__theme__/bootstrap.min.css"
-      themeUrl            : "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/slate/bootstrap.min.css"
-      themeNames: [ # valid bootswatch theme names
+      #|
+      #|--------------------------------------------------------------------------
+      #| Theme
+      #|--------------------------------------------------------------------------
+      #|
+      #| Name of the UI Theme
+      #|
+      #|
+      theme: 'slate'
+      #|
+      #|--------------------------------------------------------------------------
+      #| Theme Template
+      #|--------------------------------------------------------------------------
+      #|
+      #| Template for creating the theme url
+      #|
+      #|
+      themeTemplate: "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/__theme__/bootstrap.min.css"
+      #|
+      #|--------------------------------------------------------------------------
+      #| Theme Url
+      #|--------------------------------------------------------------------------
+      #|
+      #| Url of the theme
+      #|
+      #|
+      themeUrl: "//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.2.0+1/slate/bootstrap.min.css"
+      #|
+      #|--------------------------------------------------------------------------
+      #| Theme Names
+      #|--------------------------------------------------------------------------
+      #|
+      #| valid bootswatch theme names
+      #|
+      #|
+      themeNames: [ 
         'amelia'
         'cerulean'
         'cosmo'
@@ -65,9 +160,17 @@ angular.module('iwishua')
         'yeti'
         ]
         
+      #|
+      #|--------------------------------------------------------------------------
+      #| Toastr
+      #|--------------------------------------------------------------------------
+      #|
+      #| Toastr options
+      #|
+      #|
       toastr:
-        timeOut           : 2000 # 2 second toast timeout
-        positionClass     : 'toast-bottom-right'
+        timeOut: 2000   # 2 second toast timeout
+        positionClass: 'toast-bottom-right'
         
 
 
@@ -75,10 +178,12 @@ angular.module('iwishua')
 
         $log.log "Config initialized"
 
+        # initialize the BreezeJS adapter
         adapter = breeze.config.initializeAdapterInstance(@interfaceName, @adapterName, true)
         adapter.mobileServicesInfo = url: appUrl
         adapter.Q = $q
 
+        # initialize config values
         sync @
         @chunkSize = @pageSize * 2
         @setTheme @theme
@@ -95,6 +200,11 @@ angular.module('iwishua')
         $('#theme').attr 'href', @themeUrl
         return
 
+      #
+      # setLayout - Set the layout style
+      #
+      # @param  theme
+      #
       setLayout: (layout) =>
         @layout = layout
         
