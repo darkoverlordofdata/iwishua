@@ -66,6 +66,10 @@ request = require 'request'
 app_token = ''
 app_users = []
 
+
+#
+# Promise: Facebook logon
+#
 logon = ->
   Q.Promise (resolve, reject) ->
   
@@ -83,6 +87,25 @@ logon = ->
       return reject(response) unless response.statusCode is 200
       resolve qs.parse(body).access_token
 
+
+#
+# Promise: Get Facebook Test Users
+#
+getUsers = (token) ->
+  Q.Promise (resolve, reject) ->
+
+    request.get 
+      url : "https://graph.facebook.com/#{app_id}/accounts/test-users?"
+      qs  : access_token: token 
+      json: true
+
+    , (err, res, body) ->
+      if err then reject(err) else resolve(body)
+
+
+#
+# Promise: Make Facebook Test User Friends
+#
 makeFriends = (token, user1, user2) ->
   Q.Promise (resolve, reject) ->
   
@@ -103,17 +126,9 @@ makeFriends = (token, user1, user2) ->
 
 
     
-getUsers = (token) ->
-  Q.Promise (resolve, reject) ->
-
-    request.get 
-      url : "https://graph.facebook.com/#{app_id}/accounts/test-users?"
-      qs  : access_token: token 
-      json: true
-
-    , (err, res, body) ->
-      if err then reject(err) else resolve(body)
-
+#
+# Promise: Create Facebook Test User
+#
 createUser = (token, name, index) ->
   Q.Promise (resolve, reject) ->
   
@@ -152,9 +167,9 @@ createUser = (token, name, index) ->
   
 
 #
-# List Users
+# List Facebook Test Users
 #
-task 'user:list', 'list users', ->
+task 'user:list', 'list test users', ->
   logon().then (token) ->
     
     getUsers(token)
@@ -166,23 +181,10 @@ task 'user:list', 'list users', ->
       console.log 'rejected '+e
 
   
-option '-n', '--name [NAME]', 'User name' 
-
-task 'user:create', 'create 1 user', (options) ->
-  logon().then (token) ->
-  
-    createUser(token, options.name)
-    
-    .then (user) ->
-      console.log "#{user.id} created"
-
-    .catch (e) ->
-      console.log "unable to create user"
-    
-
-
-task 'user:test', 'create all users', (options) ->
-
+#
+# Create the Facebook Test Uses
+#
+task 'user:create', 'create all test users', (options) ->
 
   logon().then (token) ->
       
