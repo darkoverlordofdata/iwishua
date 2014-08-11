@@ -6,22 +6,17 @@
     ant task wrapper for netbeans tool menu
     -->
 
-<target name="build">
+<target name="list">
     <exec executable="cake">
-        <arg value="build"/>
+        <arg value="list"/>
     </exec>
 </target>
 
-<target name="bower">
-    <exec executable="bower">
-        <arg value="install"/>
+<target name="create">
+    <exec executable="cake">
+        <arg value="create"/>
     </exec>
 </target>
 
-<target name="npm">
-    <exec executable="npm">
-        <arg value="install"/>
-    </exec>
-</target>
 
 </project>

@@ -20,7 +20,8 @@ facebook = new FacebookTestUser(config.app_id, config.app_secret)
 #
 # List Facebook Test Users
 #
-task 'list', 'list test users', ->
+task 'list', 'list test users', (options) ->
+
   facebook.logon().then (token) ->
     
     facebook.getUsers(token)

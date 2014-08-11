@@ -17,19 +17,7 @@
 #
 angular.module('iwishua')
 .controller 'DetailController',
-  (logger, $scope, $modalInstance, $route, productData) ->
-
-    fields = [
-      'id'
-      'productId'
-      'productTitle'
-      'productDescription'
-      'productImageUrl'
-      'productBuyUrl'
-      'productKeywords'
-      'impressionUrl'
-      'isPublished'
-      ]
+  (logger, $scope, $modalInstance, $route, model, productData) ->
 
     #
     #   modal popup controller
@@ -39,8 +27,9 @@ angular.module('iwishua')
       constructor: () ->
         logger.log "DetailController initialized"
 
-        for field in fields
+        for field in model.fieldNames
           this[field] = productData[field]
+        this.productName = productData.productName
         $scope.product = @
 
 

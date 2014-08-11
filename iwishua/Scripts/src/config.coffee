@@ -82,6 +82,13 @@ angular.module('iwishua')
       #| @LAYOUT_TILED = 1
       #|
       layout: @LAYOUT_TILED
+      tiles: [
+        ['vert', 'horz', 'horz', 'vert', 'vert']
+        ['vert', 'horz', 'vert', 'vert', 'horz']
+        ['vert', 'vert', 'horz', 'vert', 'vert']
+        ['vert', 'vert', 'vert', 'vert', 'horz']
+        ['vert', 'vert', 'vert', 'vert', 'vert']
+      ]
       #|
       #|--------------------------------------------------------------------------
       #| Layout Names

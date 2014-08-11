@@ -10,11 +10,14 @@
 #
 # Facebook Test User Management
 #
+Q = require('q')
+qs = require('querystring')
+request = require('request')
+
 module.exports = class FacebookTestUser
 
-  Q = require('q')
-  qs = require('querystring')
-  request = require('request')
+
+  api = "https://graph.facebook.com"
 
   app_id        : ''
   app_secret    : ''
@@ -32,7 +35,7 @@ module.exports = class FacebookTestUser
     Q.Promise (resolve, reject) =>
 
       request.get 
-        url: 'https://graph.facebook.com/oauth/access_token'
+        url: "#{api}/oauth/access_token"
         qs: 
           redirect_uri    : "http://localhost"
           client_id       : @app_id
@@ -53,7 +56,7 @@ module.exports = class FacebookTestUser
     Q.Promise (resolve, reject) =>
 
       request.get 
-        url : "https://graph.facebook.com/#{@app_id}/accounts/test-users?"
+        url : "#{api}/#{@app_id}/accounts/test-users?"
         qs  : access_token: token 
         json: true
 
@@ -69,7 +72,7 @@ module.exports = class FacebookTestUser
     Q.Promise (resolve, reject) =>
 
       request.post 
-        url : "https://graph.facebook.com/#{user1.id}/friends/#{user2.id}?"
+        url : "#{api}/#{user1.id}/friends/#{user2.id}?"
         json: true
         qs:
           permissions   : "read_stream"
@@ -92,7 +95,7 @@ module.exports = class FacebookTestUser
     Q.Promise (resolve, reject) =>
 
       request.post 
-        url : "https://graph.facebook.com/#{app_id}/accounts/test-users?"
+        url : "#{api}/#{app_id}/accounts/test-users?"
         json: true
         qs:
           permissions   : "read_stream"

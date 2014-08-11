@@ -19,6 +19,20 @@ angular.module('iwishua')
   ($log, $q, breeze, logger) ->
 
     new class ProductsModel
+    
+      fieldNames: [
+        'id'
+        'productId'
+        'productTitle'
+        'productDescription'
+        'productImageUrl'
+        'productBuyUrl'
+        'productKeywords'
+        'impressionUrl'
+        'isPublished'
+        
+        ]
+
 
       constructor: ->
         logger.log "ProductsModel initialized"

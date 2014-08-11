@@ -53,7 +53,7 @@ angular.module('iwishua')
               @username = response.first_name
               @connected = true
               @checkAuth response
-
+        return
 
       #
       # logout - Logout from Facebook
@@ -67,6 +67,7 @@ angular.module('iwishua')
           if not @connected
             @username = 'Login'
             @admin = false
+        return
 
 
       #
@@ -82,5 +83,7 @@ angular.module('iwishua')
           if response.id is admin.content
             @admin = true
             logger.warning 'Admin access: '+response.first_name
+            return
+        return
 
 

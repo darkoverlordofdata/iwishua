@@ -22,22 +22,15 @@ angular.module('iwishua')
 
     new class WishController
 
-      Config        = Object.getClass(config)
-      skip          = Math.max(0, parseInt($localStorage.skip ? 0, 10))
-      perPage       = -> if matchmedia.isPhone() then config.pageSize else Math.floor(config.pageSize * 1.5)
+      Config   = Object.getClass(config)
+      skip     = Math.max(0, parseInt($localStorage.skip ? 0, 10))
+      perPage  = -> if matchmedia.isPhone() then config.pageSize else Math.floor(config.pageSize * 1.5)
+
 
       isBusy        : true
       spinnerName   : 'spinner-wish'
       layout        : -> config.layoutNames[config.layout]
-      patterns = [
-        ['vert', 'horz', 'horz', 'vert', 'vert']
-        ['vert', 'horz', 'vert', 'vert', 'horz']
-        ['vert', 'vert', 'horz', 'vert', 'vert']
-        ['vert', 'vert', 'vert', 'vert', 'horz']
-        ['vert', 'vert', 'vert', 'vert', 'vert']
-      ]
 
-        
 
       constructor: ->
 
@@ -121,8 +114,6 @@ angular.module('iwishua')
           if @filter(product)
             @products.push product
 
-#        @products = product for product in data when @filter(product)
-
         for attrs in @products
 
           if config.scrub
@@ -144,7 +135,7 @@ angular.module('iwishua')
         #
         if config.layout is Config.LAYOUT_TILED
           c = 0
-          className = patterns[Math.floor((Math.random() * patterns.length))]
+          className = config.tiles[Math.floor((Math.random() * config.tiles.length))]
           logger.info 'Pattern: ' + (s[0] for s in className)
           for attrs in @products
 

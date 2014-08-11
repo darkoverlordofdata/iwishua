@@ -15,11 +15,6 @@ fs = require 'fs'
 util = require 'util'
 {exec} = require 'child_process'
 {nfcall} = Q
-
-require 'coffee-script/register'
-
-
-
 #
 # Build Source
 #
