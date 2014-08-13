@@ -15,8 +15,7 @@
 #
 # Show ths wish list
 #
-angular.module('iwishua')
-.controller 'WishController',
+angular.module('iwishua').controller 'WishController',
   ($scope, $route, $location, $localStorage, $modal, matchmedia, logger, datacontext, shuffle, config, cache, usSpinnerService, iwishua) ->
 
 

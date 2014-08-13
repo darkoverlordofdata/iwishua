@@ -14,8 +14,7 @@
 # Iwishua Configuration values
 #
 #
-angular.module('iwishua')
-.factory 'config',
+angular.module('iwishua').factory 'config',
   ($q, $localStorage, $log, breeze) ->
 
     new class Config
@@ -25,6 +24,16 @@ angular.module('iwishua')
       
       appUrl = 'https://iwishuadata.azure-mobile.net/'
 
+      #|
+      #|--------------------------------------------------------------------------
+      #| Version
+      #|--------------------------------------------------------------------------
+      #|
+      #| Configuration version number.
+      #| Increment to invalidate the user cache.
+      #|
+      #|
+      version: 2
       #|
       #|--------------------------------------------------------------------------
       #| Id
@@ -204,13 +213,26 @@ angular.module('iwishua')
       constructor: ->
 
         $log.log "Config initialized"
+        
+        if $localStorage.config?
+          if $localStorage.config.version?
+            if $localStorage.config.version < @version
+              $log.log "Config version upgrade #{@version}"
+              $localStorage.$reset config: @
+          else
+            $log.log "Config version upgrade #{@version}"
+            $localStorage.$reset config: @
 
         # initialize the BreezeJS adapter
         adapter = breeze.config.initializeAdapterInstance(@interfaceName, @adapterName, true)
         adapter.mobileServicesInfo = url: appUrl
+        # 
+        # use the angular-js q module instead of a 
+        # script tag for "//cdnjs.cloudflare.com/ajax/libs/q.js/1.0.1/q.js",
+        #
         adapter.Q = $q
 
-        # initialize config values
+        # initialize user config values
         @login ''
 
       #
@@ -251,6 +273,7 @@ angular.module('iwishua')
       # @param  config
       #
       sync = (config) ->
+        
         k = 'config'+config.id
         if $localStorage[k]?
           for key, value of $localStorage[k]

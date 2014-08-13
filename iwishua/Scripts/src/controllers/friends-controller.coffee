@@ -15,8 +15,7 @@
 #
 # Show friends
 #
-angular.module('iwishua')
-.controller 'FriendsController',
+angular.module('iwishua').controller 'FriendsController',
   ($scope, $route, $location, logger, $facebook, iwishua) ->
 
 

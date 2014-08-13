@@ -14,17 +14,15 @@
 # Application store
 #
 #
-angular.module('iwishua')
-.factory 'iwishua',
+#
+#
+angular.module('iwishua').factory 'iwishua',
   (logger, config) ->
 
     new class Iwishua
 
+      product: null
+      
       constructor: ->
-        logger.log "#{this} initialized"
-
-      version: '0.0.1'
+        logger.log 'Iwishua store initialized'
       
-      
-      toString: =>
-        "Iwishua store v#{@version}"
