@@ -40,10 +40,11 @@ angular.module('iwishua')
       #| Crypto
       #|--------------------------------------------------------------------------
       #|
-      #| Algorithm used to hash user id
+      #| CryptoJS algorithm used to hash user id 
       #|
       #|
-      crypto: 'SHA1'
+      #crypto: 'MD5'  # //cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js
+      crypto: 'SHA1' # //cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha1.js
       #|
       #|--------------------------------------------------------------------------
       #| Service Name
@@ -212,6 +213,11 @@ angular.module('iwishua')
         # initialize config values
         @login ''
 
+      #
+      # login - Set the logged in user
+      #
+      # @param  id
+      #
       login: (id) =>
         if id is '' then @id = id else @id = String(CryptoJS[@crypto](id))
         sync @
