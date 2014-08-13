@@ -17,7 +17,7 @@
 #
 angular.module('iwishua')
 .controller 'FBController',
-  ($scope, logger, $facebook) ->
+  ($scope, logger, $facebook, config) ->
 
     new class FBController
 
@@ -26,18 +26,9 @@ angular.module('iwishua')
 
       constructor: ->
         logger.log "FB Controller initialized"
+        $facebook.getLoginStatus().then @connect
+        return
 
-        $facebook.getLoginStatus().then (response) =>
-
-          if response.status is 'connected'
-
-            $facebook.api("/me").then (response) =>
-              @username = response.first_name
-              @connected = true
-              @checkAuth response
-
-          else
-              @username = 'Login'
 
 
       #
@@ -46,15 +37,27 @@ angular.module('iwishua')
       #
       login: =>
         return if @connected
-        $facebook.login().then (response) =>
-
-          if response.status is 'connected'
-            $facebook.api("/me").then (response) =>
-              @username = response.first_name
-              @connected = true
-              @checkAuth response
+        $facebook.login().then @connect
         return
 
+
+      #
+      # connect - Finish up facebook connection
+      #
+      #
+      connect: (response) =>
+        if response.status is 'connected'
+          $facebook.api("/me").then (response) =>
+            @username = response.first_name
+            @connected = true
+            @checkAuth response
+            config.login response.id
+        else
+          @username = 'Login'
+          @connected = false
+          @admin = false
+          config.login ''
+        
       #
       # logout - Logout from Facebook
       #
@@ -67,6 +70,7 @@ angular.module('iwishua')
           if not @connected
             @username = 'Login'
             @admin = false
+            config.login ''
         return
 
 

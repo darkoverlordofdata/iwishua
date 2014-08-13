@@ -17,7 +17,7 @@
 #
 angular.module('iwishua')
 .controller 'HiddenController',
-  ($scope, $window, $anchorScroll, $location, $route, $localStorage, logger, datacontext, config, cache, usSpinnerService) ->
+  ($scope, $window, $anchorScroll, $location, $route, logger, datacontext, config, cache, usSpinnerService) ->
 
     new class HiddenController
 

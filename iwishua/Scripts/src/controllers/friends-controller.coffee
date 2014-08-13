@@ -17,7 +17,7 @@
 #
 angular.module('iwishua')
 .controller 'FriendsController',
-  ($scope, $route, $location, $localStorage, logger, $facebook, iwishua) ->
+  ($scope, $route, $location, logger, $facebook, iwishua) ->
 
 
     new class FriendsController

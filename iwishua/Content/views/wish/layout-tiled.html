@@ -1,0 +1,15 @@
+<!--
+Wish View Layout Tiled
+-->
+<div masonry>
+    <div ng-repeat="product in wish.products"
+         ng-click="wish.details('{{ product.id }}')"
+         class="masonry-brick {{ product.className }}">
+
+        <img class="{{ product.aligned }} product_pic img-rounded"
+             ng-src="{{ product.productImageUrl }}"
+             alt="{{ product.productTitle }}" />
+        <p>{{ product.productName }}</p>
+
+    </div>
+</div>

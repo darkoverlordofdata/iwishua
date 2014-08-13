@@ -27,6 +27,16 @@ angular.module('iwishua')
 
       #|
       #|--------------------------------------------------------------------------
+      #| user id
+      #|--------------------------------------------------------------------------
+      #|
+      #| unique user id
+      #|
+      #|
+      crypto: 'SHA1'
+      id: ''
+      #|
+      #|--------------------------------------------------------------------------
       #| Service Name
       #|--------------------------------------------------------------------------
       #|
@@ -97,13 +107,13 @@ angular.module('iwishua')
       #| List of possible layout styles
       #|
       #|
-      layoutNames: ['LAYOUT_LIST', 'LAYOUT_ TILED']
+      layoutNames: ['LAYOUT_LIST', 'LAYOUT_TILED']
       #|
       #|--------------------------------------------------------------------------
       #| Log Threshold
       #|--------------------------------------------------------------------------
       #|
-      #| Uri of the BreezeJS data source
+      #| Flags determine which log types are displayed
       #|
       #|
       logThreshold: 1 | 4 | 8 | 16  #   Defaults
@@ -191,10 +201,13 @@ angular.module('iwishua')
         adapter.Q = $q
 
         # initialize config values
+        @login ''
+
+      login: (id) =>
+        if id is '' then @id = id else @id = String(CryptoJS[@crypto](id))
         sync @
         @chunkSize = @pageSize * 2
         @setTheme @theme
-
 
       #
       # setTheme - Set the gui theme
@@ -215,22 +228,25 @@ angular.module('iwishua')
       setLayout: (layout) =>
         @layout = layout
         
+        
+        
       #
       # Sync - sync the config object with web storage
       #
       # @param  config
       #
       sync = (config) ->
-        if $localStorage.config?
-          for key, value of $localStorage.config
+        k = 'config'+config.id
+        if $localStorage[k]?
+          for key, value of $localStorage[k]
             config[key] = value
           for key, value of config
-            $localStorage.config[key] = value unless $localStorage.config[key]?
+            $localStorage[k][key] = value unless $localStorage[k][key]?
             
         else
-          $localStorage.config = {}
+          $localStorage[k] = {}
           for key, value of config
-            $localStorage.config[key] = value
+            $localStorage[k][key] = value
 
 
 

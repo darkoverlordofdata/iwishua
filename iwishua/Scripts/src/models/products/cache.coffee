@@ -17,7 +17,7 @@
 #
 angular.module('iwishua')
 .factory 'cache',
-  ($rootScope, $timeout, $localStorage, breeze, logger) ->
+  ($rootScope, $timeout, $localStorage, breeze, logger, config) ->
 
     new class EntityCache
 
@@ -47,7 +47,7 @@ angular.module('iwishua')
       clear: () =>
         if @_disabled then return
         try
-          delete $localStorage[@_storeName]
+          delete $localStorage[@_storeName+config.id]
           @_storeCount = 0
           @sendMessage "Cleared Entity Cache store"
           return
@@ -81,8 +81,8 @@ angular.module('iwishua')
         return
 
       importEntities: () =>
-        if $localStorage[@_storeName]?
-          @imports = @_manager.importEntities($localStorage[@_storeName]).entities
+        if $localStorage[@_storeName+config.id]?
+          @imports = @_manager.importEntities($localStorage[@_storeName+config.id]).entities
           @_storeCount = @imports.length
           @sendMessage "Imported #{@_storeCount} records(s) from store"
           @imports
@@ -91,7 +91,7 @@ angular.module('iwishua')
       exportEntities: (data) =>
         @exports = @_manager.exportEntities(data)
         @sendMessage "Exported #{@_storeCount} records(s) to store"
-        $localStorage[@_storeName] = @exports
+        $localStorage[@_storeName+config.id] = @exports
 
       restore: () =>
         @imports = []
@@ -100,7 +100,7 @@ angular.module('iwishua')
         # imports changes from store
         @_isRestoring = true
         try
-          @changes = $localStorage[@_storeName]
+          @changes = $localStorage[@_storeName+config.id]
           if @changes
             # should confirm that metadata and app version
             # are still valid but this is a demo
@@ -144,10 +144,10 @@ angular.module('iwishua')
           @_storeCount = @changes.length
           @sendMessage "Storing #{@_storeCount} change(s)"
           @exported = @_manager.exportEntities(@changes, false)
-          $localStorage[@_storeName] = @exported
+          $localStorage[@_storeName+config.id] = @exported
         else if @_storeCount isnt 0
           @sendMessage "No changes clearing store"
-          delete $localStorage[@_storeName]
+          delete $localStorage[@_storeName+config.id]
           @_storeCount = 0
         return
 

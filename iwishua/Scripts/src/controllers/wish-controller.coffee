@@ -23,13 +23,12 @@ angular.module('iwishua')
     new class WishController
 
       Config   = Object.getClass(config)
-      skip     = Math.max(0, parseInt($localStorage.skip ? 0, 10))
+      skip     = Math.max(0, parseInt($localStorage['skip'+config.id] ? 0, 10))
       perPage  = -> if matchmedia.isPhone() then config.pageSize else Math.floor(config.pageSize * 1.5)
 
 
       isBusy        : true
       spinnerName   : 'spinner-wish'
-      layout        : -> config.layoutNames[config.layout]
 
 
       constructor: ->
@@ -55,25 +54,32 @@ angular.module('iwishua')
           datacontext.ready().then(@fetchData).catch(@handleError)
 
       #
+      # layout - get's the layout template
+      #
+      # @return template file name
+      #
+      layout: -> config.layoutNames[config.layout].replace('_', '-').toLowerCase()
+
+      #
       # navLeft - Navigate Left
       #
-      # @parm $event
+      # @param $event
       #
       navLeft: ($event) ->
         skip += perPage()
         skip = Math.min(datacontext.maxCount-perPage(), skip)
-        $localStorage.skip = skip
+        $localStorage['skip'+config.id] = skip
         @fetchData()
 
       #
       # navRight - Navigate Right
       #
-      # @parm $event
+      # @param $event
       #
       navRight: ($event) ->
         skip -= perPage()
         skip = Math.max(0, skip)
-        $localStorage.skip = skip
+        $localStorage['skip'+config.id] = skip
         @fetchData()
 
       #
@@ -86,7 +92,7 @@ angular.module('iwishua')
       #
       # handleError - process the error event
       #
-      # @parm error
+      # @param error
       #
       handleError: (error) =>
         @spinner false
@@ -97,7 +103,7 @@ angular.module('iwishua')
       #
       # display
       #
-      # @parm data
+      # @param data
       #
       display: (data) =>
 
@@ -120,13 +126,16 @@ angular.module('iwishua')
             title = attrs.productTitle
             # strip off wrapping quotes
             if title[0...1] is '"' then title = title[1...-1]
-            words = title.replace(/[-,.©®™]/g, ' ').replace(/([a-z])([A-Z])/g, "$1 $2").split(/\s+/)
-            title = words.join(' ')
-            attrs.productTitle = title
+            
+            words = title.replace(/[-,.©®™]/g, ' ')   # remove special chars
+            .replace(/([a-z])([A-Z])/g, "$1 $2")      # change 'camelCase' to 'camel Case'
+            .split(/\s+/)                             # split on whitespace
+            attrs.productTitle = words.join(' ')      # reduce whitespaces to single space
             name = ''
             until name.length > 20 or words.length is 0
               name = words.pop() + ' ' + name.substr(0, 1).toUpperCase() + name.substr(1)
             attrs.productName = name
+            
           else attrs.productName = attrs.productTitle
 
 
@@ -161,7 +170,7 @@ angular.module('iwishua')
       #
       # filter - select this product?
       #
-      # @parm product
+      # @param product
       #
       filter: (product) =>
         state = product.entityAspect.entityState
@@ -170,7 +179,7 @@ angular.module('iwishua')
       #
       # details - Modal popup with product details
       #
-      # @parm id
+      # @param id
       #
       details: (id) =>
 
@@ -178,7 +187,7 @@ angular.module('iwishua')
           if id is product.id
             modal = $modal.open
               size          : 'sm'
-              templateUrl   : 'Content/views/wish-details.html'
+              templateUrl   : 'Content/views/wish/details.html'
               controller    : 'DetailController'
               resolve:
                 productData: () ->
@@ -202,7 +211,7 @@ angular.module('iwishua')
       #
       # spinner - Start/Stop the spinner
       #
-      # @parm start - true/false
+      # @param start - true/false
       #
       spinner: (start) =>
 

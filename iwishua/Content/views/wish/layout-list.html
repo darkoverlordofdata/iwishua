@@ -1,0 +1,27 @@
+<!--
+Wish View Layout List
+-->
+<ul class="list-group">
+    <div ng-repeat="product in wish.products">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-3">
+                    <img class="product_pic img-rounded"
+                        ng-src="{{ product.productImageUrl }}"
+                        alt="{{ product.productTitle }}" />
+                </div>
+                <div class="col-xs-6">
+                    {{ product.productName }}
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" class="pull-left btn btn-warning" ng-click="product.delete()">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-click="product.wish()">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </button>
+                </div>
+            </div>
+        </li>
+    </div>
+</ul>

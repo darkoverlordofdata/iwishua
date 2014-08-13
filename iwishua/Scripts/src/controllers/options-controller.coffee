@@ -68,7 +68,9 @@ angular.module('iwishua')
         bootbox.confirm 'Clear (Y/N)?', (isYes) =>
 
           if isYes
-            $localStorage.$reset(config: config)
+            save = {}
+            save['config'+config.id] = config
+            $localStorage.$reset save
             $timeout ->
               # reboot to reset memory
               $window.location.replace($window.location.origin+$window.location.pathname)
@@ -79,14 +81,14 @@ angular.module('iwishua')
       # First record
       #
       first: =>
-        $localStorage.skip = 0
+        $localStorage['skip'+config.id] = 0
         $location.path('/')
         return
 
 
       saveLayout: =>
         config.setLayout Config[@layout]
-        $localStorage.config = config
+        $localStorage['config'+config.id] = config
         $timeout ->
           $window.location.replace($window.location.origin+$window.location.pathname)
         ,300
@@ -94,7 +96,7 @@ angular.module('iwishua')
 
       saveTheme: =>
         config.setTheme @theme
-        $localStorage.config = config
+        $localStorage['config'+config.id] = config
         return
 
       cancel: =>
@@ -131,7 +133,7 @@ angular.module('iwishua')
         else
           config.logThreshold &= ~Logger.LOG
 
-        $localStorage.config = config
+        $localStorage['config'+config.id] = config
         $location.path('/')
         return
 

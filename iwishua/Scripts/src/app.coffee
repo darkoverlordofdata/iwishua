@@ -50,7 +50,7 @@ angular.module('iwishua', [
   #
 
   .when '/',              # home
-    templateUrl:  'Content/views/wish.html'
+    templateUrl:  'Content/views/wish/index.html'
 
   .when '/hidden',        # list hidden items
     templateUrl:  'Content/views/hidden.html'
