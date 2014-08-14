@@ -106,7 +106,7 @@ img.product_pic {
     border-radius: .5em;
 }
 
-.masonry-brick.horz {
+.masonry-brick.horz, .gift {
     width:  14em;
     height: 7em;
     font-size: 0.8em;
@@ -147,7 +147,7 @@ img.aligncenter {display: block; margin-left: auto; margin-right: auto}
         border-radius: .5em;
     }
 
-    .masonry-brick.horz {
+    .masonry-brick.horz, .gift {
         width:  14em;
         height: 9em;
         font-size: 0.8em;
@@ -182,7 +182,7 @@ img.aligncenter {display: block; margin-left: auto; margin-right: auto}
         width: 7em;
         border-radius: 1em;
     }
-    .masonry-brick.horz {
+    .masonry-brick.horz, .gift {
         width:  18em;
         height: 9em;
         font-size: 1em;

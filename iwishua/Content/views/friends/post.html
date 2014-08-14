@@ -1,0 +1,25 @@
+<!--
+Friends View Modal Popup Give
+-->
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="friend.cancel()">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+    </button>
+    <h3 class="modal-title" id="popupLabel">iwishua - {{ friend.name }}</h3>
+</div>
+
+<div class="modal-body">
+    <img class="friend_pic img-circle alignleft " 
+         ng-src="{{ friend.productImageUrl }}" 
+         alt="{{ friend.productName }}" />
+    <textarea ng-model="friend.wish" rows="5" cols="40">{{ friend.wish }}</textarea>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="pull-left btn btn-default" ng-click="friend.cancel()">
+        <span class="glyphicon glyphicon-remove"> Cancel</span>
+    </button>
+    <button type="button" class="btn btn-primary" ng-click="friend.share()">
+        <span class="glyphicon glyphicon-share"> Share</span>
+    </button>
+</div>

@@ -93,16 +93,18 @@ module.exports = class FacebookTestUser
   #
   createUser: (token, name, index) =>
     Q.Promise (resolve, reject) =>
-
+      
       request.post 
-        url : "#{api}/#{app_id}/accounts/test-users?"
+        url : "#{api}/#{@app_id}/accounts/test-users?"
         json: true
         qs:
-          permissions   : "read_stream"
+          permissions   : "read_stream,publish_stream"
           access_token  : token 
 
       , (err, response, user) =>
 
+        if err or response.statusCode isnt 200
+          console.log  "pass 1.a failed #{response.body.error.message}: #{name}"
         return reject(err) if err
         return reject(response) unless response.statusCode is 200
 
@@ -120,7 +122,7 @@ module.exports = class FacebookTestUser
         , (err, response) =>
 
           if err or response.statusCode isnt 200
-            console.log  "pass 1 failed #{response.body.error.message}: #{name}"
+            console.log  "pass 1.b failed #{response.body.error.message}: #{name}"
           return reject(err) if err
           return reject(user: user, name: name) unless response.statusCode is 200
           resolve user

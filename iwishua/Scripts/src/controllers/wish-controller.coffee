@@ -57,7 +57,8 @@ angular.module('iwishua').controller 'WishController',
       #
       # @return template file name
       #
-      layout: -> config.layoutNames[config.layout].replace('_', '-').toLowerCase()
+      layout: -> 
+        config.layoutNames[config.layout].replace('_', '-').toLowerCase()
 
       #
       # navLeft - Navigate Left
@@ -130,6 +131,7 @@ angular.module('iwishua').controller 'WishController',
             .replace(/([a-z])([A-Z])/g, "$1 $2")      # change 'camelCase' to 'camel Case'
             .split(/\s+/)                             # split on whitespace
             attrs.productTitle = words.join(' ')      # reduce whitespaces to single space
+            
             name = ''
             until name.length > 20 or words.length is 0
               name = words.pop() + ' ' + name.substr(0, 1).toUpperCase() + name.substr(1)

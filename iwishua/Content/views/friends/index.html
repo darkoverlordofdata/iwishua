@@ -1,0 +1,42 @@
+<!--
+Friends View
+-->
+<div class="container" ng-controller="FriendsController as gift">
+    
+    <div class='gift'>
+        <img class="alignleft product_pic img-rounded"
+            ng-src="{{ gift.product.productImageUrl }}"
+            alt="{{ gift.product.productTitle }}" />
+        <p>{{ gift.product.productName }}</p>
+    </div>
+    <div class="overthrow">
+
+        <table class="table table-striped">
+                <tr ng-repeat="friend in gift.friends">
+                    <td>
+                        <img class="friend_pic img-circle" 
+                             ng-src="{{ friend.picture.data.url }}" 
+                             alt="{{ friend.name }}" />
+                    </td>
+                    <td>
+                        {{ friend.name }}                        
+                    </td>
+                    <td>
+                        <button type="button"
+                                ng-click="gift.remove(friend)"
+                                class="btn btn-warning">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button"
+                                ng-click="gift.post(friend)"
+                                class="btn btn-primary">
+                            <span class="glyphicon glyphicon-gift"> Give</span>
+                        </button>
+                    </td>
+            </tr>
+        </table>
+    </div>
+</div>
+

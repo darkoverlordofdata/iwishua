@@ -44,19 +44,19 @@ task 'create', 'create all test users', (options) ->
     Q.allSettled(funcs)
     
     .then (results) ->  # now friend everyone
-                        
+
       funcs = []
       for mark in facebook.app_users
         for time in facebook.app_users
           if mark.id isnt time.id
             funcs.push facebook.makeFriends(token, mark, time)
             funcs.push facebook.makeFriends(token, time, mark)
-            
+
       Q.allSettled(funcs).then ->
         console.log "Ok"
-        
       
       
-      
+    .catch (e) ->
+      console.log 'rejected '+e
 
 

@@ -53,22 +53,22 @@ angular.module('iwishua', [
     templateUrl:  'Content/views/wish/index.html'
 
   .when '/hidden',        # list hidden items
-    templateUrl:  'Content/views/hidden.html'
+    templateUrl:  'Content/views/hidden/index.html'
 
   .when '/friends',        # List facebook friends
-    templateUrl:  'Content/views/friends.html'
+    templateUrl:  'Content/views/friends/index.html'
 
   .when '/options',        # list hidden items
-    templateUrl:  'Content/views/options.html'
+    templateUrl:  'Content/views/options/index.html'
 
   .when '/about',         # FB: Terms of Service URL
-    templateUrl:  'Content/views/about.html'
+    templateUrl:  'Content/views/about/index.html'
 
   .when '/privacy',       # FB: Privacy Policy URL
-    templateUrl:  'Content/views/privacy.html'
+    templateUrl:  'Content/views/about/privacy.html'
 
   .when '/support',       # FB: User Support URL
-    templateUrl:  'Content/views/about.html'
+    templateUrl:  'Content/views/about/support.html'
 
   .otherwise(redirectTo: '/')
 
